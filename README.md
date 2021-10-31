@@ -1,1 +1,1 @@
-# Prediction_Wildfire_Spread
+# Predict_Wildfire_Spread
