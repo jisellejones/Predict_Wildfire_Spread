@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Predict_Wildfire_Spread
 
 
@@ -31,3 +32,22 @@ TAVG - Average Temperature.
 TMIN - Minimum temperature
 MDPR - Multiday precipitation total (use with DAPR and DWPR, if available)
 TSUN - Total sunshine for the period
+=======
+# Predict Wildfire Spread Analysis
+
+## Project Overview - Predict Wildfire Spread 
+
+## Resources
+-  Data Files:
+
+-  Software/Languages:  
+
+## (Additional Diagrams, Resources, etc)
+
+# Challenge Summary
+
+## Predict Wildfire Spread  - Results
+
+
+## Predict Wildfire Spread  - Summary
+>>>>>>> c54c4558cd5082e00616a83e411a02a7a0fcee8a
