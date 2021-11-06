@@ -2,6 +2,14 @@
 
 # Challenge Summary
 
+## Communication Protocols
+- Jiselle will merge all pull requests to the main branch
+- Jiselle will check the repo each day for pull requests
+- Team members will also communicate via meetings or chats when branches are ready to be merged
+- 
+- Team will meet at  
+- Team
+
 ## Project Overview - Predict Wildfire Spread
 
 The purpose of this project is to try to predict where and how quickly a wildfire will spread based on
@@ -15,6 +23,8 @@ The purpose of this project is to try to predict where and how quickly a wildfir
 
 Can we predict where and how quickly a wildfire will spread when given the location of the wildfire?
 
+## Reason for topic selection
+- Wildfires have seemed to be increasing over time in both frequency and intensity. These wildfires impact the lives of humans and animals in surrounding cities and states. The massive loss of forest and greenery may also accelerate the impacts of climate change. If we can predict the location, size, and spread of a wildfire, we may be able to decrease the amount of natural life lost.
 
 ### Questions arising from data
 
@@ -32,6 +42,13 @@ Can we predict where and how quickly a wildfire will spread when given the locat
         - Data from the Oregon Department of Forestry with data from 1990 to 2021 
     -  noaa_data
         -  Weather data from the National Oceanic and Atmospheric Administration(NOAA) from 2008 to 2020
+    - To connect with data
+        - Step 1: If using local server install psycopg2
+            - If using Google Colab, this first step is unnecessary
+        - Step 2: In file: import psycopg2 as pg
+        - Step 3: Use the following code - replace [table] is either wildfire_data or noaa_data
+            - engine = pg.connect("dbname='d3r8dfuncb78iv' user='jrufhfiejfajri' host='ec2-52-200-155-213.compute-1.amazonaws.com' port='5432' password='9a7254d2151b5e3c280fe275dbba039acdc9190fbc167f64c564c449ca77af88'")
+            - noaa_df = pd.read_sql('select * from [table]', con=engine)    
     
 -  Data Sources:
     - [NOAA Documentation](https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/GHCND_documentation.pdf)
