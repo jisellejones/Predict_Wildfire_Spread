@@ -33,7 +33,7 @@ Can we predict where and how quickly a wildfire will spread when given the locat
 - Is there a way to determine the direction the fire will move from where it started?
 - Can we predict the fire size using a supervised model, show it on a map and then overlay wind speed/direction to possibly indicate the fire location?
     - Then could we show surrounding cities/towns for possible resources or evacuation areas?
-
+    
 ## Resources
 -  Data Files on Heroku:
     -  wildfire_data
@@ -53,14 +53,26 @@ Can we predict where and how quickly a wildfire will spread when given the locat
     - [Weather Data - Noaa Search Tool](https://www.ncdc.noaa.gov/cdo-web/search?datasetid=GHCND)
     - [Oregon Wildfire Data](https://apps.odf.oregon.gov/DIVISIONS/protection/fire_protection/fires/FIRESlist.asp)
 
-# Provisional Machine Learning Model
+## Software/Languages:
+-  SQL
+-  Python 3.7
+-  Google Colab
+-  VSCode 1.62.0
+-  PGAdmin 5.2
+-  Heroku
+-  Scikit learn
+-  Future use (Java Script, JSON, Tableau, HTML)
+
+## Provisional Machine Learning Model
   - [Simple ML.ipynb](ML_Simple.ipynb)
     - Uses Jupyter Notebook to connect to our Heroku database to pull wildfire data and runs a random forest classifier
   - [noaa_data_payground.ipynb](https://colab.research.google.com/drive/1VAWK816E8hy7tyfbFem6Q9Z6DEXCUf_o#scrollTo=0Rzd3OD_kQlU)
      - Uses Google Colab to connect to our Heroku database and pull noaa_data and begin data cleaning. We will join the wildfire data and the NOAA data as we continue on with the project.
 
-## Software/Languages:  
-
+## Challenge Summary
+- Finding usable data - reviewed data on several different platforms.  Data formats where the biggest hurrdle.  Found 2 sources that provided data in .csv
+- Merging weather data - downloaded data by county (37 total) for the state of Oregon which resulted in over 1 million rows of data.  Initially tried to merge via PGAdmin.  Due to varying column inclusion by county, the schema would have been 40+ columns wide.  Due to the data width, the team pivoted to using pandas to merge the data which was more efficient. 
+- Determination of useful variables - Currently working on the proper threshold level to determine whether to keep certain columns based upon % of NaN.
 
 ## Predict Wildfire Spread  - Results
 - Preliminary findings 11.06.2021 
@@ -75,4 +87,4 @@ Can we predict where and how quickly a wildfire will spread when given the locat
 
 ## Analysis
 ## (Additional Diagrams, Resources, etc)
-## Predict Wildfire Spread  - Summary
+## Summary
