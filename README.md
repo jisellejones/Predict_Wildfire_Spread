@@ -6,9 +6,7 @@
 - Jiselle will merge all pull requests to the main branch
 - Jiselle will check the repo each day for pull requests
 - Team members will also communicate via meetings or chats when branches are ready to be merged
-- 
-- Team will meet at  
-- Team
+- Team will meet on M/W during class and will determine other meeting times over the week at Mondays class or Saturday office hours
 
 ## Project Overview - Predict Wildfire Spread
 
@@ -54,7 +52,6 @@ Can we predict where and how quickly a wildfire will spread when given the locat
     - [NOAA Documentation](https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/GHCND_documentation.pdf)
     - [Weather Data - Noaa Search Tool](https://www.ncdc.noaa.gov/cdo-web/search?datasetid=GHCND)
     - [Oregon Wildfire Data](https://apps.odf.oregon.gov/DIVISIONS/protection/fire_protection/fires/FIRESlist.asp)
-    - 
 
 # Provisional Machine Learning Model
   - [Simple ML.ipynb](ML_Simple.ipynb)
