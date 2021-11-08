@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://jrufhfiejfajri:9a7254d2151b5
 db = SQLAlchemy(app)
 
 @app.route('/')
-def welcome():
+def home():
     return render_template("index.html")
 
 if __name__ == "__main__":
