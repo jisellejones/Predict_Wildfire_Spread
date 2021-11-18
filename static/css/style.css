@@ -1,13 +1,33 @@
-html,
+
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 150px; bottom: 50px; width: 60%; }
+
 body,
-#mapid {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0
+html {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
 }
 
-.legend {
+body{
+  background-image: url("http://all4desktop.com/data_images/original/4245965-fire.jpg");
+  background-size: auto 100vh;
+} 
+/* background style from https://speckyboy.com/flame-effects-code-snippets/ */
+
+h1 {
+  color: rgba(206, 119, 38, 0.966);
+}
+
+
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu),
+.input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n + 3) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+/* .legend {
   padding: 10px;
   line-height: 18px;
   color: #555;
@@ -21,4 +41,5 @@ body,
   float: left;
   margin-right: 8px;
   opacity: 0.7;
-}
+} */
+

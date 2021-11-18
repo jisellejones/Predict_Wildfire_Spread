@@ -1,17 +1,40 @@
 # Initial Import of Dependencies
+import os
+import json
 from flask import Flask , render_template, jsonify, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+from config import connection_string, connection_string2
+from decimal import Decimal
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://jrufhfiejfajri:9a7254d2151b5e3c280fe275dbba039acdc9190fbc167f64c564c449ca77af88@ec2-52-200-155-213.compute-1.amazonaws.com:5432/d3r8dfuncb78iv"
+# Connecting to database
+engine = create_engine(connection_string)
 
-db = SQLAlchemy(app)
+class JSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            return float(obj)
+        return json.JSONEncoder.default(self, obj)
 
+# Creating home route
 @app.route('/')
 def home():
     return render_template("index.html")
+
+
+@app.route("/about")
+def about():
+    return render_template('about.html')
+
+# Office hours connect 
+@app.route("/api/wildfire/severity/<severity_level>")
+def wildfire(severity_level):
+    connection = engine.connect()
+    query = connection.execute(f"SELECT * FROM prediction_results_1 WHERE actual_fire_severity = {severity_level}")
+    obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
+    return json.dumps(obj, cls=JSONEncoder)
 
 if __name__ == "__main__":
     app.run(debug=True)
