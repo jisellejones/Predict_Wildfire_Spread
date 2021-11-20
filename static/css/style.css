@@ -2,15 +2,6 @@
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 150px; bottom: 50px; width: 60%; }
 
-body,
-html {
-  margin: 0px;
-  padding: 0px;
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-}
-
 body{
   background-image: url("http://all4desktop.com/data_images/original/4245965-fire.jpg");
   background-size: auto 100vh;
@@ -18,15 +9,72 @@ body{
 /* background style from https://speckyboy.com/flame-effects-code-snippets/ */
 
 h1 {
-  color: rgba(206, 119, 38, 0.966);
+  color: #ffa500;
+}
+
+legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: calc(1.275rem + 0.3vw);
+  line-height: inherit;
+  color: #fff;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+}
+
+.col-form-label {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-control::-webkit-file-upload-button {
+    -webkit-transition: none;
+    transition: none;
+  }
 }
 
 
-.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu),
-.input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n + 3) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+.form-text {
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #888;
 }
+.form-label {
+  color: #fff;
+}
+
+.form-control-plaintext {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0;
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: #fff;
+  background-color: rgb(192, 189, 189);
+  border: solid transparent;
+  border-width: 1px 0;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #375a7f;
+  border-color: #375a7f;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #2f4d6c;
+  border-color: #2c4866;
+}
+
 /* .legend {
   padding: 10px;
   line-height: 18px;
