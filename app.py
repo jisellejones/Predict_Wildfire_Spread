@@ -23,7 +23,7 @@ class JSONEncoder(json.JSONEncoder):
 def home():
     return render_template("index.html")
 
-# "about" page - just checking it out
+# "about" page - just checking it out - we may not use it
 @app.route("/about")
 def about():
     return render_template('about.html')
@@ -44,7 +44,6 @@ def features():
     query = connection.execute(f"SELECT * FROM feature_importance")
     obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
     return json.dumps(obj, cls=JSONEncoder)
-
 
 if __name__ == "__main__":
     app.run(debug=True)

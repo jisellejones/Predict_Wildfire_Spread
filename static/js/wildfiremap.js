@@ -19,7 +19,7 @@ let fires = new L.LayerGroup();
 let overlays = {
     "Fires": fires,
   };
-
+// put all this in a function
 let x = 3
 
 data = d3.json("/api/wildfire/severity/" + x).then(function(data){
@@ -113,7 +113,7 @@ function filterMap(filterList) {
     if (key === "datetime") {
       filteredData = filteredData.filter(row => row.datetime === value);
       } else {
-        console.log("Date field is blank.")
+        console.log("Year field is blank.")
       }
     if (key === "city") {
       filteredData = filteredData.filter(row => row.city == value);
