@@ -29,7 +29,7 @@ def about():
     return render_template('about.html')
 
 # Office hours connect 
-@app.route("/api/wildfire/severity/<severity_level>/<year>")
+@app.route("/api/wildfire/severity/<severity_level>")
 def wildfire(severity_level):
     connection = engine.connect()
     query = connection.execute(f"SELECT * FROM prediction_results_1 WHERE actual_fire_severity = {severity_level}")
@@ -38,10 +38,24 @@ def wildfire(severity_level):
 
     # add if statements - if xx = null
 
-@app.route("/api/features")
-def features():
+@app.route("/api/features/fire")
+def fireonly():
     connection = engine.connect()
-    query = connection.execute(f"SELECT * FROM feature_importance")
+    query = connection.execute(f"SELECT * FROM feature_importance_fire")
+    obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
+    return json.dumps(obj, cls=JSONEncoder)
+
+@app.route("/api/features/fireweather")
+def fireweather():
+    connection = engine.connect()
+    query = connection.execute(f"SELECT * FROM feature_importance_fireweather")
+    obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
+    return json.dumps(obj, cls=JSONEncoder)
+
+@app.route("/api/features/avgprcp")
+def avgprcp():
+    connection = engine.connect()
+    query = connection.execute(f"SELECT * FROM feature_importance_fireweatheravgprcp")
     obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
     return json.dumps(obj, cls=JSONEncoder)
 
