@@ -23,16 +23,25 @@ class JSONEncoder(json.JSONEncoder):
 def home():
     return render_template("index.html")
 
-
+# "about" page - just checking it out - we may not use it
 @app.route("/about")
 def about():
     return render_template('about.html')
 
 # Office hours connect 
-@app.route("/api/wildfire/severity/<severity_level>")
+@app.route("/api/wildfire/severity/<severity_level>/<year>")
 def wildfire(severity_level):
     connection = engine.connect()
     query = connection.execute(f"SELECT * FROM prediction_results_1 WHERE actual_fire_severity = {severity_level}")
+    obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
+    return json.dumps(obj, cls=JSONEncoder)
+
+    # add if statements - if xx = null
+
+@app.route("/api/features")
+def features():
+    connection = engine.connect()
+    query = connection.execute(f"SELECT * FROM feature_importance")
     obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
     return json.dumps(obj, cls=JSONEncoder)
 
