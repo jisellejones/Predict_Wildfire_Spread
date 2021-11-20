@@ -20,7 +20,9 @@ let overlays = {
     "Fires": fires,
   };
 
-data = d3.json("/api/wildfire/severity/5").then(function(data){
+let x = 3
+
+data = d3.json("/api/wildfire/severity/" + x).then(function(data){
     for (var i = 0; i < data.length; i++) {
         lat = data[i]['latitude']
         lng = data[i]['longitude']
@@ -32,13 +34,12 @@ data = d3.json("/api/wildfire/severity/5").then(function(data){
             weight:1,
             radius:getRadius(data[i]['total_acres']),
             stroke: true
-        }).addTo(map);
+        }).bindPopup('Year: ' + data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(map);
     }
 });   
-
 // Determines the radius of the fire marker based on the number of acres burned.
 function getRadius(acres) {
-    return acres * 4;
+    return acres * 10;
   }
 
 // This function determines the color of the marker based on the severity of the fire.
@@ -100,14 +101,10 @@ function updateFilters() {
 // Filter the table when data is entered.
 function filterMap(filterList) {
   
-  // Create the filtered data to the tableData.
-  let filteredData = ;
+  // Create the filtered data
+  let filteredData = {};
 
-
-
-
-
-  // 9. Loop through all of the filters and keep any data that
+  //Loop through all of the filters and keep any data that
   // matches the filter values
   //if the key matches a column then update the value
   for ([key, value] of Object.entries(filterList)) { 
@@ -140,7 +137,7 @@ function filterMap(filterList) {
     }
   }
   
-  // 10. Finally, rebuild the table using the filtered data
+  // Finally, rebuild the map using the filtered data??
   buildTable(filteredData);
 }
 
