@@ -49,12 +49,11 @@ def wildfire(severity, year):
         statement = f"SELECT {columns} FROM prediction_results_1 WHERE actual_fire_severity = {severity};;"
     else:
         statement = f"SELECT {columns} FROM prediction_results_1 WHERE fire_year = {year} AND actual_fire_severity = {severity};"     
-    return statement
-    # connection = engine.connect()
-    # query = connection.execute(statement)
-    # obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
-    # connection.close()
-    # return jsonify(j=obj, cls=JSONEncoder)
+    connection = engine.connect()
+    query = connection.execute(statement)
+    obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
+    connection.close()
+    return jsonify(j=obj, cls=JSONEncoder)
 
 
 # Route for Feature Importance with fire data only
