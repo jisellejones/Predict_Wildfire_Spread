@@ -4,7 +4,7 @@ import json
 from flask import Flask , render_template, jsonify, request, redirect, url_for
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from config import connection_string, connection_string2
+from config import connection_string
 from decimal import Decimal
 
 app = Flask(__name__)
@@ -38,6 +38,7 @@ def wildfire(severity_level):
 
     # add if statements - if xx = null
 
+# Route for Feature Importance with fire data only
 @app.route("/api/features/fire")
 def fireonly():
     connection = engine.connect()
@@ -45,6 +46,7 @@ def fireonly():
     obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
     return json.dumps(obj, cls=JSONEncoder)
 
+# Route for Feature Importance with fire and weather data 
 @app.route("/api/features/fireweather")
 def fireweather():
     connection = engine.connect()
@@ -52,6 +54,7 @@ def fireweather():
     obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
     return json.dumps(obj, cls=JSONEncoder)
 
+# Route for Feature Importance with average precipitation
 @app.route("/api/features/avgprcp")
 def avgprcp():
     connection = engine.connect()
