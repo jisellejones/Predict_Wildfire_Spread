@@ -29,14 +29,33 @@ def about():
     return render_template('about.html')
 
 # Office hours connect 
-@app.route("/api/wildfire/severity/<severity_level>")
-def wildfire(severity_level):
-    connection = engine.connect()
-    query = connection.execute(f"SELECT * FROM prediction_results_1 WHERE actual_fire_severity = {severity_level}")
-    obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
-    return json.dumps(obj, cls=JSONEncoder)
+@app.route("/api/wildfire/<severity>/<year>/")
+def wildfire(severity, year):
+    columns = "fire_year, latitude, longitude, actual_fire_severity, predicted_fire_severity, total_acres"
+    connection = engine.connect()   
+    no_severity = bool
+    no_year = bool
+    statement = ""
+    if severity == "No Severity":
+            no_severity = True
+    if year == "No Year":
+        no_year = True
+    
+    if no_severity == True and no_year == True:
+        statement = f"SELECT {columns} FROM prediction_results_1; WHERE fire_year = 2021;"
+    elif no_severity == True and no_year == False:
+        statement = f"SELECT {columns} FROM prediction_results_1 WHERE fire_year = {year};"
+    elif no_severity == False and no_year == True:
+        statement = f"SELECT {columns} FROM prediction_results_1 WHERE actual_fire_severity = {severity};;"
+    else:
+        statement = f"SELECT {columns} FROM prediction_results_1 WHERE fire_year = {year} AND actual_fire_severity = {severity};"     
+    return statement
+    # connection = engine.connect()
+    # query = connection.execute(statement)
+    # obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
+    # connection.close()
+    # return jsonify(j=obj, cls=JSONEncoder)
 
-    # add if statements - if xx = null
 
 # Route for Feature Importance with fire data only
 @app.route("/api/features/fire")
