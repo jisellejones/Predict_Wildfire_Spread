@@ -171,7 +171,7 @@ To account for our overfitting with class 1 fires, another ML was created for Co
 <img width="638" alt="Screen Shot 2021-11-22 at 10 40 35 PM" src="https://user-images.githubusercontent.com/691355/142980623-9b17ca48-15f0-4462-a474-d572b0403031.png">
 
 
-## Machine Learning Model - ML_fireandweather and ML_fireweatheravgprcp
+## Machine Learning Model - ML_fireandweather
 
 ### ETL:
 To prepare the ML models with the new weather data ETL was performed to drop all rows with null values.
@@ -188,12 +188,37 @@ Added new rows containing weather data to the model.
 - precipitation AVG
 
 ### Machine Learning Model:  
-Overall accuracy decreased from ML_Fire.
+Overall accuracy decreased from ML_Fire, with the most significant change being predictions in class 3 fire severity.
 
 ### Results (RFC):
 
+<img width="569" alt="Screen Shot 2021-11-22 at 10 45 09 PM" src="https://user-images.githubusercontent.com/691355/142980996-d3256e5b-ad15-4d89-82ca-bbbf7d8959f9.png">
+
+### Results (SMOTEENN):
+
+<img width="674" alt="Screen Shot 2021-11-22 at 10 46 07 PM" src="https://user-images.githubusercontent.com/691355/142981096-18589f39-1183-48a4-8f10-cd3a61ee80f0.png">
+
+## Machine Learning Model - ML_fireweatheravgprcp
+
+### ETL: None
+
+### Feature Enineering Changes (Target): None
+
+### Feature Enineering Changes (Features):  
+Added new row containing average aggregated precipitation average and dropped precipitation average.
 
 
+### Machine Learning Model:  
+Overall accuracy decreased from ML_Fire and ML_fireandweather, with the most significant change being predictions in class 3 fire severity.
+
+### Results (RFC):
+
+<img width="478" alt="Screen Shot 2021-11-22 at 10 52 48 PM" src="https://user-images.githubusercontent.com/691355/142981739-cb4bce27-0faf-41ca-a0e2-92bcdc3d6a5b.png">
+
+
+### Results (SMOTEENN):
+
+![Uploading Screen Shot 2021-11-22 at 10.53.27 PM.png…]()
 
 
 ## Challenge Summary
