@@ -66,8 +66,120 @@ Can we predict where and how quickly a wildfire will spread when given the locat
 ## Provisional Machine Learning Model
   - [Simple ML.ipynb](ML_Simple.ipynb)
     - Uses Jupyter Notebook to connect to our Heroku database to pull wildfire data and runs a random forest classifier
+    - First iteration of ML model ETL and assessing relationships
   - [noaa_data_payground.ipynb](https://colab.research.google.com/drive/1VAWK816E8hy7tyfbFem6Q9Z6DEXCUf_o#scrollTo=0Rzd3OD_kQlU)
      - Uses Google Colab to connect to our Heroku database and pull noaa_data and begin data cleaning. We will join the wildfire data and the NOAA data as we continue on with the project.
+
+## Machine Learning Model - ML_Simple (Provisional Model)
+
+Feature Enineering (Target):  To predict fire severity, the total acres a fire consumed was binned into 5 levels of severity.  
+-  Class 1 - 10 acres or less;
+-  Class 2 - 10 acres or more,, but less than 100 acres;
+-  Class 3 - 100 acres or more, but less than 1000 acres;
+-  Class 4 - 1000 acres or more, but less than 10,000 acres;
+-  Class 5 - 10,000 acres or more.
+
+With the initial class sizes, we could determine a large skew in the Class 1 fires.
+
+-  Class 1 - 31989
+-  Class 2 - 1131
+-  Class 3 - 404
+-  Class 4 - 135
+-  Class 5 - 96
+
+Feature Enineering (Features): From the Oregon Department of Forestry dataset (1990 - 2021) we used General Cause, Fire Year, Latitude, Longitude, and Fuel Model.
+
+Machine Learning Model:
+
+We choose to start with Random Forest Classifier for two reasons:
+
+1.  Ability to rank features by importance.
+2.  Predict outcomes based on our testing features.
+
+Results:
+(img)
+
+Limitations:
+
+RFC does great with classification but not regression.  The model would have a difficult time with precise and continous predictions.  There is also a high chance the trees have there own condtions, such as:
+-  Class Imbalance
+-  Sample Duplicatiom
+-  Overfitting
+-  Node Splitting 
+
+
+## Machine Learning Model - ML_Fire
+
+ETL:
+To match our future weather features merge, the years for the fire data were adjusted to 2008 - 2020.
+
+Feature Engineering Changes(Target):  For our target, we determined there was value in following a recognized fire classification system.  The levels were changed to match how the National Wildfire Coordinating Group classifies fires. https://www.nwcg.gov/term/glossary/size-class-of-fire.  After running the model with the changed class sizes, we saw a decrease in accuracy across the model.  Therefore, the class sizes were adjusted to follow a 3 class system from USDA Forest Service: https://www.fs.fed.us/nwacfire/home/terminology.html.
+
+
+## Fire Classes - National Wildfire Coordinating Group vs USDA Forest Service 
+
+## National Wildfire Coordinating Group
+
+-  Class 1 - one-fourth acre or less;
+-  Class 2 - more than one-fourth acre, but less than 10 acres;
+-  Class 3 - 10 acres or more, but less than 100 acres;
+-  Class 4 - 100 acres or more, but less than 300 acres;
+-  Class 5 - 300 acres or more, but less than 1,000 acres;
+-  Class 6 - 1,000 acres or more, but less than 5,000 acres;
+-  Class 7 - 5,000 acres or more.
+
+With the class sizes, there is still a large skew in the Class 1 fires.
+
+-  Class 1 - 8947
+-  Class 2 - 2805
+-  Class 3 - 478
+-  Class 4 - 101
+-  Class 5 - 56
+-  Class 6 - 47
+-  Class 7 - 70
+
+## USDA Forest Service 
+
+-  Class 1 - one-fourth acre or less;
+-  Class 2 - more than one-fourth acre, but less than 300 acres;
+-  Class 7 - 300 acres or more.
+
+There is still a large skew in class 1 but slight balance added to class 2 and class 3.
+
+-  Class 1 - 8947
+-  Class 2 - 3384
+-  Class 3 - 173
+
+Feature Enineering Changes (Features):
+-  Date range adjusted to 2008 - 2020
+-  General cause binned into 3 categories; human, nature, undetermined/misc
+
+Results:
+(img)
+
+Machine Learning Model:  To account for our overfitting with class 1 fires, another ML was created for Combination Sampling With SMOTEENN.
+
+(img)
+
+
+## Machine Learning Model - ML_fireandweather and ML_fireweatheravgprcp
+ETL:
+To prepare the ML models with the new weather data ETL was performed to drop all rows with null values.
+-  Removing null values dropped total rows from 12,577 to 10,048.
+
+Feature Enineering Changes (Target): None
+
+Feature Enineering Changes (Features):  Added new rows containing weather data to the model.
+- Temperature Min AVG
+- Temperature Max AVG
+- Snow Depth AVG
+- Snow AVG
+- precipitation AVG
+
+
+
+
+
 
 ## Challenge Summary
 - Finding usable data - reviewed data on several different platforms.  Data formats where the biggest hurrdle.  Found 2 sources that provided data in .csv
