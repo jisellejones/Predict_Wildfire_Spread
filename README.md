@@ -162,7 +162,7 @@ There is still a large skew in class 1 but slight balance added to class 2 and c
 ### Machine Learning Model:  
 To account for our overfitting with class 1 fires, another ML was created for Combination Sampling With SMOTEENN.
 
-### Results (RCF):
+### Results (RFC):
 
 <img width="452" alt="Screen Shot 2021-11-22 at 10 39 20 PM" src="https://user-images.githubusercontent.com/691355/142980528-66098550-5d43-481f-be8b-beb8bc8a850a.png">
 
@@ -172,19 +172,25 @@ To account for our overfitting with class 1 fires, another ML was created for Co
 
 
 ## Machine Learning Model - ML_fireandweather and ML_fireweatheravgprcp
-ETL:
+
+### ETL:
 To prepare the ML models with the new weather data ETL was performed to drop all rows with null values.
 -  Removing null values dropped total rows from 12,577 to 10,048.
 
-Feature Enineering Changes (Target): None
+### Feature Enineering Changes (Target): None
 
-Feature Enineering Changes (Features):  Added new rows containing weather data to the model.
+### Feature Enineering Changes (Features):  
+Added new rows containing weather data to the model.
 - Temperature Min AVG
 - Temperature Max AVG
 - Snow Depth AVG
 - Snow AVG
 - precipitation AVG
 
+### Machine Learning Model:  
+Overall accuracy decreased from ML_Fire.
+
+### Results (RFC):
 
 
 
