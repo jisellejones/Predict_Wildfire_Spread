@@ -12,16 +12,18 @@ let map = L.map('map', {
     layers: [dark]
 });
 
-// Add layer(s) to map
+// Add layer(s) to mapg
 let fires = new L.LayerGroup();
 
 // function to update map
 function updateMap(severity, year) {
   d3.json("/api/wildfire/" + severity + "/" + year).then(function(data){
+      console.log(severity, year)
+      // remove all the markers in one go
+      fires.clearLayers();
       for (var i = 0; i < data.length; i++) {
           lat = data[i]['latitude']
           lng = data[i]['longitude']
-          console.log(lat, lng)
           var marker = L.circle(L.latLng(lat, lng), {
               fillOpacity: .8,
               color: getColor(data[i]['actual_fire_severity']),
@@ -32,7 +34,8 @@ function updateMap(severity, year) {
           }).bindPopup('Year: ' + data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
       }
   });
-  fires.addTo(map);
+  
+  map.addLayer(fires);
 }
 
 function filterMap() {
@@ -87,5 +90,6 @@ function getColor(severity) {
     return "#98ee00";
   }
 
-//Event listener for changes
-d3.select("#button").on("click", filterMap());
+// //Event listener for changes
+// d3.select("#year").on("keypress", filterMap);
+d3.select("#submitbutton").on("click", filterMap);
