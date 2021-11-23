@@ -72,7 +72,9 @@ Can we predict where and how quickly a wildfire will spread when given the locat
 
 ## Machine Learning Model - ML_Simple (Provisional Model)
 
-Feature Enineering (Target):  To predict fire severity, the total acres a fire consumed was binned into 5 levels of severity.  
+### Feature Enineering (Target):
+
+To predict fire severity, the total acres a fire consumed was binned into 5 levels of severity.  
 -  Class 1 - 10 acres or less;
 -  Class 2 - 10 acres or more,, but less than 100 acres;
 -  Class 3 - 100 acres or more, but less than 1000 acres;
@@ -87,20 +89,22 @@ With the initial class sizes, we could determine a large skew in the Class 1 fir
 -  Class 4 - 135
 -  Class 5 - 96
 
-Feature Enineering (Features): From the Oregon Department of Forestry dataset (1990 - 2021) we used General Cause, Fire Year, Latitude, Longitude, and Fuel Model.
+### Feature Enineering (Features): 
+From the Oregon Department of Forestry dataset (1990 - 2021) we used General Cause, Fire Year, Latitude, Longitude, and Fuel Model.
 
-Machine Learning Model:
-
+### Machine Learning Model:
 We choose to start with Random Forest Classifier for two reasons:
 
 1.  Ability to rank features by importance.
 2.  Predict outcomes based on our testing features.
 
-Results:
-(img)
+### Results:
 
-Limitations:
+<img width="483" alt="Screen Shot 2021-11-22 at 10 36 29 PM" src="https://user-images.githubusercontent.com/691355/142980342-82f02fac-5eb5-4173-a2f8-c4a30a2443b3.png">
 
+
+
+### Limitations:
 RFC does great with classification but not regression.  The model would have a difficult time with precise and continous predictions.  There is also a high chance the trees have there own condtions, such as:
 -  Class Imbalance
 -  Sample Duplicatiom
