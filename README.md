@@ -27,32 +27,32 @@ Can the severity of a wildfire be predicted based on geographic and weather data
 ## Dashboard / Data Story
  [Wildfire Website Deployment](https://wildfirepredict.herokuapp.com/)
  
- I. Fires in OR seem to be increasing in fluency each year
-    A. Visualization - Number of fire per year (linear regression)
-II.	Fires also seem to be increasing in intensity 
-    A. Visualization showing increasing intensity? (1990 - 2001)
-    B. Visual of map showing years and intensity? (1990 - 2001)
-III.Effects of fires on humans, animals, Earth
- 	A. Just an explanation - words or images, not necessarily data - or a mosaic of percentages, data on how fires effect these things.  All Oregon statistics:
-        1.	Structures destroyed 300+ 
-        2.	Ddeaths 11 deaths in 2020
-        3.	Area Burned in 2020 1.2 Million Acres (GlobalForestWatch.Org)
-IV.	What causes wildfires
-	A. Human causes
-    B. Natural causes
-    C. Fuel Type
-    D. Weather
-V.	Which of these have the greatest impact on fire severity?
-    A. Visualization of Random Forest Weighted Table
-VI.	Can we predict the severity of a Wildfire based on 4 factors mentioned above?
-    A. For each ML model show a dashboard of the  following
-        1. Graph showing severity number
-        2. Visualization of map with actual acres burned
-            a. Colors = severity
-            b. Size = acreage
-            c. Popups
-        3. Table showing accuracy
-        4. Give user ability to choose fire year & severity?
+ - Fires in OR seem to be increasing in fluency each year
+    - Visualization - Number of fire per year (linear regression)
+ - Fires also seem to be increasing in intensity 
+    - Visualization showing increasing intensity? (1990 - 2001)
+    - Visual of map showing years and intensity? (1990 - 2001)
+- Effects of fires on humans, animals, Earth
+ 	- Just an explanation - words or images, not necessarily data - or a mosaic of percentages, data on how fires effect these things.  All Oregon statistics:
+        - Structures destroyed 300+ 
+        - Deaths 11 deaths in 2020
+        - Area Burned in 2020 1.2 Million Acres (GlobalForestWatch.Org)
+- What causes wildfires
+	- Human causes
+    - Natural causes
+    - Fuel Type
+    - Weather
+- Which of these have the greatest impact on fire severity?
+    - Visualization of Random Forest Weighted Table
+- Can we predict the severity of a Wildfire based on 4 factors mentioned above?
+    - For each ML model show a dashboard of the  following
+        - Graph showing severity number
+        - Visualization of map with actual acres burned
+            - Colors = severity
+            - Size = acreage
+            - Popups
+        - Table showing accuracy
+        - Give user ability to choose fire year & severity?
 
 ## Exploratory Data Analysis
 - [Database Schema with Join](db_schema.sql)
