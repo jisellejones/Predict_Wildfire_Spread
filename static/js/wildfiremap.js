@@ -14,7 +14,7 @@ let map = L.map('map', {
 
 function init() {
   // Use the list of sample names to populate the select options
-  d3.json("/api/wildfire/1/All Severity/2021").then((data) => {
+  d3.json("/api/wildfire/1/All Severity/2020").then((data) => {
     let actual = []
     let predicted = []
     for (var i = 0; i < data.length; i++) {
@@ -39,7 +39,10 @@ function init() {
           height: 500,
       },
       title: {
-          text: 'Predicted vs Actual Fire Severity \n 2021', 
+          text: `Predicted vs Actual Fire Severity\n2020\nML Model 1`,
+          style: {
+            color: '#FFFFFF',
+          }
       },
       subtitle: {
           text: 'Source: Oregon Department of Forestry'
@@ -50,10 +53,14 @@ function init() {
               '2',
               '3',
           ],
+          title: {
+            text: 'Severity'
+          },
           crosshair: true
       },
       yAxis: {
           min: 0,
+          gridLineWidth: 0,
           title: {
               text: 'Number of Fires'
           }
@@ -91,7 +98,7 @@ let fires = new L.LayerGroup();
 
 // function to update map
 function updateMap(model, severity, year) {
-  d3.json("/api/wildfire/" + model + "/" + severity + "/" + year).then(function(data){
+  d3.json(`/api/wildfire/${model}/${severity}/${year}`).then(function(data){
       console.log(severity, year)
       // remove all the markers in one go
       fires.clearLayers();
@@ -105,7 +112,7 @@ function updateMap(model, severity, year) {
               weight:1,
               radius:getRadius(data[i]['total_acres']),
               stroke: true
-          }).bindPopup('Year: ' + data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
+          }).bindPopup('Name: ' + data[i]['fire_name'] + '<br>Year: '+ data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
       }
   });
   
@@ -152,8 +159,8 @@ function getColor(severity) {
 }
 
 // Updates Bar Chart
-function updateChart(severity, year) {  
-  d3.json("/api/wildfire/" + severity + "/" + year).then(function(data){
+function updateChart(model, severity, year) {  
+  d3.json(`/api/wildfire/${model}/${severity}/${year}`).then(function(data){
     let actual = []
     let predicted = []
     for (var i = 0; i < data.length; i++) {
@@ -177,7 +184,10 @@ function updateChart(severity, year) {
           height: 500,
       },
       title: {
-          text: `Predicted vs Actual Fire Severity \n ${year}`
+          text: `Predicted vs Actual Fire Severity \n ${year} ML Model ${model}`,
+          style: {
+            color: '#FFFFFF',
+          }
       },
       subtitle: {
           text: 'Source: Oregon Department of Forestry' 
@@ -188,10 +198,19 @@ function updateChart(severity, year) {
               '2',
               '3',
           ],
+          labels: {
+            style: {
+                color: 'white'
+            },
+            title: {
+              text: 'Severity'
+            }
+          },
           crosshair: true
       },
       yAxis: {
           min: 0,
+          gridLineWidth: 0,
           title: {
               text: 'Number of Fires'
           }

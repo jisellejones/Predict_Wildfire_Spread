@@ -31,7 +31,6 @@ def about():
 # Office hours connect 
 @app.route("/api/wildfire/<mlModel>/<severity>/<year>")
 def wildfire(mlModel,severity, year):
-    columns = "fire_year, latitude, longitude, actual_fire_severity, predicted_fire_severity, total_acres"
     connection = engine.connect()
     model = mlModel
     no_severity = False
@@ -45,11 +44,11 @@ def wildfire(mlModel,severity, year):
     if no_severity == True and no_year == True:
         statement = f"SELECT * FROM prediction_results_1"
     elif no_severity == True and no_year == False:
-        statement = f"SELECT {columns} FROM prediction_results_{model} WHERE fire_year = {year};"
+        statement = f"SELECT * FROM prediction_results_{model} WHERE fire_year = {year};"
     elif no_severity == False and no_year == True:
-        statement = f"SELECT {columns} FROM prediction_results_{model} WHERE actual_fire_severity = {severity};"
+        statement = f"SELECT * FROM prediction_results_{model} WHERE actual_fire_severity = {severity};"
     else:
-        statement = f"SELECT {columns} FROM prediction_results_{model} WHERE fire_year = {year} AND actual_fire_severity = {severity};"     
+        statement = f"SELECT * FROM prediction_results_{model} WHERE fire_year = {year} AND actual_fire_severity = {severity};"     
     query = connection.execute(statement)
     obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
     connection.close()
