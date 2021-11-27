@@ -1,3 +1,5 @@
+
+
 // Add map tile
 let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -111,7 +113,7 @@ function updateMap(model, severity, year) {
               color: getColor(data[i]['actual_fire_severity']),
               fillColor: getColor(data[i]['actual_fire_severity']),
               weight:1,
-              radius:getRadius(data[i]['total_acres']),
+              radius:Math.sqrt((data[i]['total_acres']/100) + 2),
               stroke: true
           }).bindPopup('Name: ' + data[i]['fire_name'] + '<br>Year: '+ data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
       }
@@ -145,7 +147,8 @@ function filterMap() {
 
 // Determines the radius of the fire marker based on the number of acres burned.
 function getRadius(acres) {
-    return acres * 10;
+  radius: Math.sqrt(cases / 100) + 2
+    return Math.sqrt(acres / 100) + 2;
   }
 
 // This function determines the color of the marker based on the severity of the fire.
