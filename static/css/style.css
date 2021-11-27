@@ -1,16 +1,277 @@
 
+
+/* 
+---------------------------------------------
+Global Styles
+--------------------------------------------- 
+*/
+
 body { margin: 0; padding: 0; }
-#map { position: absolute; top: 150px; bottom: 50px; width: 60%; }
+#map { height: 500px;}
 
 body{
-  background-image: url("http://all4desktop.com/data_images/original/4245965-fire.jpg");
-  background-size: auto 100vh;
+  background: url("https://mikefreel.com/wp-content/uploads/2021/11/pexels-izaac-elms-8722621.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 } 
 /* background style from https://speckyboy.com/flame-effects-code-snippets/ */
 
+/* 
+---------------------------------------------
+Title Header
+--------------------------------------------- 
+*/
+
 h1 {
-  color: #ffa500;
+  color: #ffffff;
+  text-align: center;
 }
+
+h2 {
+  color: #ffffff;
+  text-align: center;
+}
+
+.container-fluid1 {
+  margin-bottom: 60px;
+  margin-top: 300px;
+}
+
+/* Button Style 1*/
+.btn1 {
+  color: #fff;
+  font-family: helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  background-color: #000;
+  border: 0;
+  padding: 20px 20px;
+  border-radius:3px;
+  line-height: 0.428571;
+  position: absolute;
+  z-index: 1;
+  letter-spacing: -0.2px;
+  top: 60%; 
+  left: 50%; 
+  margin: 0 auto;
+  transform: translate(-50%, -50%); }
+  
+  .btn1:hover { background: rgba(0,0,0,0.1); cursor: pointer; }
+
+
+/* 
+---------------------------------------------
+About - Project Information
+--------------------------------------------- 
+*/
+
+
+#features {
+  margin-top: 500px;
+  margin-bottom: 5px;
+  background-color: white;
+}
+
+.feature-item {
+  display: inline-block;
+  margin-bottom: 60px;
+}
+
+.feature-item .left-icon img {
+  float: left;
+  margin-right: 30px;
+}
+
+.feature-item .right-content {
+  display: inline;
+}
+
+.feature-item .right-content h4 {
+  margin-top: 0px;
+  margin-bottom:  7px;
+  letter-spacing: 0.25px;
+  color: #232d39;
+  font-size: 19px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.feature-item .right-content a.text-button {
+  margin-top: 7px;
+  display: inline-block;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #080808;
+  font-weight: 500;
+}
+
+.aboutfire {
+  font-size: 2.25em!important;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  color: black;
+}
+
+.section-heading1 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+/* 
+---------------------------------------------
+Fire Acres Counter 
+--------------------------------------------- 
+*/
+
+.bgimage1{
+  background-image: url('https://mikefreel.com/wp-content/uploads/2021/11/firetotals.jpg');
+  height: 324px;
+  width: 1024;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 6px solid #333;
+  margin: 5px;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.tah1{
+  color: #1c2939;
+  text-align:center;
+  font-weight: bold;
+  text-shadow:
+		-1px -1px 0 #fff,
+		1px -1px 0 #FFF,
+		-1px 1px 0 #FFF,
+		1px 1px 0 #FFF;
+}
+
+.loader {
+  color: rgba(255, 254, 254, 0.877);
+  text-align:center;
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-weight: bold;
+  font-size: 15vh;
+  opacity: 1.0;
+
+}
+/* 
+---------------------------------------------
+Fire Stats / RFC Feature Break / Detecting Fire Severity 
+--------------------------------------------- 
+*/
+
+#sectionbreaks {
+  padding: 120px 0px;
+  background-color: white;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+
+}
+
+.cta-content h2 {
+  font-size: 36px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: 1px;
+}
+
+.cta-content h2 em {
+  font-style: normal;
+  color: #fc2802;
+}
+
+.cta-content p {
+  font-size: 16px;
+  color: rgb(10, 10, 10);
+  margin: 15px 0px 25px 0px;
+}
+
+/* 
+---------------------------------------------
+Banner - Machine Learning 
+--------------------------------------------- 
+*/
+
+.tah2{
+  color: #1c2939;
+  text-align:center;
+  font-weight: bold;
+  text-shadow:
+		-1px -1px 0 #fff,
+		1px -1px 0 #FFF,
+		-1px 1px 0 #FFF,
+		1px 1px 0 #FFF;
+    padding-top: 120px;
+    
+  }
+
+
+.bgimage2{
+  background-image: url('https://mikefreel.com/wp-content/uploads/2021/11/pexels-lumn-167699.jpg');
+  height: 324px;
+  width: 1024;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 6px solid #333;
+  margin: 5px;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+/* 
+---------------------------------------------
+Machine Learning 
+--------------------------------------------- 
+*/
+
+#mlmodel .ml-item {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+  padding: 40px;
+  margin-bottom: 30px;
+}
+
+#mlmodel .ml-item img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+#mlmodel .ml-item span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ed563b;
+  display: inline-block;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+#mlmodel .ml-item h4 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #232d39;
+  letter-spacing: 0.5px;
+  margin-bottom: 18px;
+}
+
+#mlmodel .ml-item p {
+  margin-bottom: 20px;
+}
+
+
+
+/* 
+---------------------------------------------
+Fire Severity Map
+--------------------------------------------- 
+*/
 
 legend {
   float: left;
@@ -75,19 +336,11 @@ legend {
   border-color: #2c4866;
 }
 
-/* .legend {
-  padding: 10px;
-  line-height: 18px;
-  color: #555;
-  background-color: #fff;
-  border-radius: 5px;
-}
+/* 
+-------------------------------
+fire prediction container
+-------------------------------
+*/
 
-.legend i {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin-right: 8px;
-  opacity: 0.7;
-} */
+
 

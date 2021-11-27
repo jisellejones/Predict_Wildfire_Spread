@@ -12,31 +12,136 @@ let map = L.map('map', {
     layers: [dark]
 });
 
-// Add layer(s) to map
+function init() {
+  // Use the list of sample names to populate the select options
+  d3.json("/api/wildfire/1/All Severity/2020").then((data) => {
+    let actual = []
+    let predicted = []
+    for (var i = 0; i < data.length; i++) {
+      actual.push(data[i]['actual_fire_severity'])
+      predicted.push(data[i]['predicted_fire_severity'])
+    };
+  
+    // Count occurrences of severity 1, 2, 3
+    let actual_count1 = actual.filter(x => x === 1).length 
+    let actual_count2 = actual.filter(x => x === 2).length 
+    let actual_count3 = actual.filter(x => x === 3).length 
+    let predicted_count1 = predicted.filter(x => x === 1).length 
+    let predicted_count2 = predicted.filter(x => x === 2).length
+    let predicted_count3 = predicted.filter(x => x === 3).length 
+
+    console.log(actual_count1, actual_count2, actual_count3, predicted_count1, predicted_count2, predicted_count3)
+
+    Highcharts.chart('graphpredict', {
+      chart: {
+          type: 'column',
+          backgroundColor: '#202020',
+          height: 500,
+      },
+      title: {
+          text: `Predicted vs Actual Fire Severity\n2020\nML Model 1`,
+          style: {
+            color: '#FFFFFF',
+          }
+      },
+      subtitle: {
+          text: 'Source: Oregon Department of Forestry'
+      },
+      xAxis: {
+          categories: [
+              '1',
+              '2',
+              '3',
+          ],
+          title: {
+            text: 'Severity'
+          },
+          crosshair: true
+      },
+      yAxis: {
+          min: 0,
+          gridLineWidth: 0,
+          title: {
+              text: 'Number of Fires'
+          }
+      },
+      tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y} </b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+      },
+      plotOptions: {
+          column: {
+              pointPadding: 0.2,
+              borderWidth: 0
+          }
+      },
+      series: [{
+          name: 'Predicted',
+          data: [predicted_count1, predicted_count2, predicted_count3]
+      }, {
+          name: 'Actual',
+          data: [actual_count1, actual_count2, actual_count3]
+      }]
+    });
+  });
+}
+
+// Initializethe Chart
+init()
+
+// Add layer(s) to mapg
 let fires = new L.LayerGroup();
 
-// Reference to fires
-let overlays = {
-    "Fires": fires,
-  };
-// put all this in a function
-let x = 3
+// function to update map
+function updateMap(model, severity, year) {
+  d3.json(`/api/wildfire/${model}/${severity}/${year}`).then(function(data){
+      console.log(severity, year)
+      // remove all the markers in one go
+      fires.clearLayers();
+      for (var i = 0; i < data.length; i++) {
+          lat = data[i]['latitude']
+          lng = data[i]['longitude']
+          var marker = L.circle(L.latLng(lat, lng), {
+              fillOpacity: .6,
+              color: getColor(data[i]['actual_fire_severity']),
+              fillColor: getColor(data[i]['actual_fire_severity']),
+              weight:1,
+              radius:getRadius(data[i]['total_acres']),
+              stroke: true
+          }).bindPopup('Name: ' + data[i]['fire_name'] + '<br>Year: '+ data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
+      }
+  });
+  
+  map.addLayer(fires);
+}
 
-data = d3.json("/api/wildfire/severity/" + x).then(function(data){
-    for (var i = 0; i < data.length; i++) {
-        lat = data[i]['latitude']
-        lng = data[i]['longitude']
-        console.log(lat, lng)
-        var marker = L.circle(L.latLng(lat, lng), {
-            fillOpacity: .8,
-            color: getColor(data[i]['actual_fire_severity']),
-            fillColor: getColor(data[i]['actual_fire_severity']),
-            weight:1,
-            radius:getRadius(data[i]['total_acres']),
-            stroke: true
-        }).bindPopup('Year: ' + data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(map);
-    }
-});   
+function filterMap() {
+  let filters = {
+    model: d3.select('#mlModel').property('value'),
+    severity: d3.select('#severity').property('value'),
+    year: d3.select('#year').property('value'),
+  };
+  let model = filters.model
+  let severity;
+  let year;
+  if (filters.severity === "") {
+      severity = 'All Severity'
+  } else {
+    severity = filters.severity
+  }
+  if (filters.year === "") {
+      year = 'All Years'
+  } else {
+    year = filters.year
+  }
+  updateMap(model, severity, year);
+  updateChart(model, severity, year);
+}
+
 // Determines the radius of the fire marker based on the number of acres burned.
 function getRadius(acres) {
     return acres * 10;
@@ -44,106 +149,98 @@ function getRadius(acres) {
 
 // This function determines the color of the marker based on the severity of the fire.
 function getColor(severity) {
-    if (severity > 7) {
-        return "#781616";
-    }
-    if (severity > 6) {
-        return "#BB2323";
-    }
-    if (severity > 5) {
-      return "#ea2c2c";
-    }
-    if (severity > 4) {
-      return "#ea822c";
-    }
-    if (severity > 3) {
-      return "#ee9c00";
-    }
-    if (severity > 2) {
-      return "#eecc00";
-    }
-    if (severity > 1) {
-      return "#d4ee00";
-    }
-    return "#98ee00";
+  if (severity > 2) {
+    return "#FF7700";
   }
-
-
-
-// Variable to keep track of all the filters as an object.
-var filters = {};
-
-// Use this function to update the filters. 
-function updateFilters() {
-
-  // Save the element that was changed as a variable.
-  let changedElement = d3.select(this);
-
-  // Save the value that was changed as a variable.
-  let elementValue = changedElement.property("value");
-  console.log(elementValue);
-
-  // Save the id of the filter that was changed as a variable.
-  let filterId = changedElement.attr("id");
-  console.log(filterId);
-
-  //If a filter value was entered then add that filterId and value
-  // to the filters list. Otherwise, clear that filter from the filters object.
-  if (elementValue) {
-    filters[filterId] = elementValue;
-  } else {
-    delete filters[filterId];
+  if (severity > 1) {
+    return "#eecc00";
   }
-  console.log(filters)
-  // Call function to apply all filters and rebuild the table
-  filterMap(filters);
-}
-// Filter the table when data is entered.
-function filterMap(filterList) {
-  
-  // Create the filtered data
-  let filteredData = {};
-
-  //Loop through all of the filters and keep any data that
-  // matches the filter values
-  //if the key matches a column then update the value
-  for ([key, value] of Object.entries(filterList)) { 
-    console.log(key);
-    console.log(value); 
-    if (key === "datetime") {
-      filteredData = filteredData.filter(row => row.datetime === value);
-      } else {
-        console.log("Year field is blank.")
-      }
-    if (key === "city") {
-      filteredData = filteredData.filter(row => row.city == value);
-    } else {
-      console.log("City field is blank.")
-    }
-    if (key === "state") {
-      filteredData = filteredData.filter(row => row.state === value);
-    } else {
-      console.log("State field is blank.")
-    }
-    if (key === "country") {
-      filteredData = filteredData.filter(row => row.country === value);
-    } else {
-      console.log("Country field is blank.")
-    }
-    if (key === "shape") {
-      filteredData = filteredData.filter(row => row.shape === value);
-    } else {
-      console.log("Shape field is blank.")
-    }
-  }
-  
-  // Finally, rebuild the map using the filtered data??
-  buildTable(filteredData);
+  return "#00FFFF";
 }
 
-// 2. Attach an event to listen for changes to each filter
-d3.select("#datetime").on("change", updateFilters);
-d3.select("#city").on("change", updateFilters);
-d3.select("#state").on("change", updateFilters);
-d3.select("#country").on("change", updateFilters);
-d3.select("#shape").on("change", updateFilters);
+// Updates Bar Chart
+function updateChart(model, severity, year) {  
+  d3.json(`/api/wildfire/${model}/${severity}/${year}`).then(function(data){
+    let actual = []
+    let predicted = []
+    for (var i = 0; i < data.length; i++) {
+      actual.push(data[i]['actual_fire_severity'])
+      predicted.push(data[i]['predicted_fire_severity'])
+    };
+  
+    let actual_count1 = actual.filter(x => x === 1).length 
+    let actual_count2 = actual.filter(x => x === 2).length 
+    let actual_count3 = actual.filter(x => x === 3).length 
+    let predicted_count1 = predicted.filter(x => x === 1).length 
+    let predicted_count2 = predicted.filter(x => x === 2).length
+    let predicted_count3 = predicted.filter(x => x === 3).length 
+
+    console.log(actual_count1, actual_count2, actual_count3, predicted_count1, predicted_count2, predicted_count3)
+
+    Highcharts.chart('graphpredict', {
+      chart: {
+          type: 'column',
+          backgroundColor: '#202020',
+          height: 500,
+      },
+      title: {
+          text: `Predicted vs Actual Fire Severity \n ${year} ML Model ${model}`,
+          style: {
+            color: '#FFFFFF',
+          }
+      },
+      subtitle: {
+          text: 'Source: Oregon Department of Forestry' 
+      },
+      xAxis: {
+          categories: [
+              '1',
+              '2',
+              '3',
+          ],
+          labels: {
+            style: {
+                color: 'white'
+            },
+            title: {
+              text: 'Severity'
+            }
+          },
+          crosshair: true
+      },
+      yAxis: {
+          min: 0,
+          gridLineWidth: 0,
+          title: {
+              text: 'Number of Fires'
+          }
+      },
+      tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y} </b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+      },
+      plotOptions: {
+          column: {
+              pointPadding: 0.2,
+              borderWidth: 0
+          }
+      },
+      series: [{
+          name: 'Predicted',
+          data: [predicted_count1, predicted_count2, predicted_count3]
+      }, {
+          name: 'Actual',
+          data: [actual_count1, actual_count2, actual_count3]
+      }]
+    });
+  });
+}
+  
+
+// //Event listener for changes
+// d3.select("#year").on("keypress", filterMap);
+d3.select("#submitbutton").on("click", filterMap);
