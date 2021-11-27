@@ -19,12 +19,12 @@ The purpose of this project is to try to predict where and how quickly a wildfir
 
 ## Main Question
 
-Can we predict where and how quickly a wildfire will spread when given the location of the wildfire?
+Can the severity of a wildfire be predicted based on geographic and weather data? 
 
 ## Reason for topic selection
 - Wildfires have seemed to be increasing over time in both frequency and intensity. These wildfires impact the lives of humans and animals in surrounding cities and states. The massive loss of forest and greenery may also accelerate the impacts of climate change. If we can predict the location, size, and spread of a wildfire, we may be able to decrease the amount of natural life lost.
 
-### Questions arising from data
+### Questions during EDA from data
 
 - Is there correlation between the amount of slashing (heavy, medium, thinning) and the size of a wildfire?
 - Is there correlation between the average or median precipitation of the month the fire starts and the fire size?
@@ -35,6 +35,9 @@ Can we predict where and how quickly a wildfire will spread when given the locat
     - Then could we show surrounding cities/towns for possible resources or evacuation areas?
     
 ## Resources
+- [Presentation](https://docs.google.com/presentation/d/1plyPo9EvBSwDRBLmRfiiLZi264RDhYacvXQldgWzTLU/edit#slide=id.p)
+- [Database Schema with Join](db_schema.sql)
+- [Wildfire Website Deployment](https://wildfirepredict.herokuapp.com/)
 -  Data Files on Heroku:
     -  wildfire_data
         - Data from the Oregon Department of Forestry with data from 1990 to 2021 
@@ -54,21 +57,20 @@ Can we predict where and how quickly a wildfire will spread when given the locat
     - [Oregon Wildfire Data](https://apps.odf.oregon.gov/DIVISIONS/protection/fire_protection/fires/FIRESlist.asp)
 
 ## Software/Languages:
--  SQL
--  Python 3.7
--  Google Colab
--  VSCode 1.62.0
--  PGAdmin 5.2
--  Heroku
--  Scikit learn
--  Future use (Java Script, JSON, Tableau, HTML)
-
-## Provisional Machine Learning Model
-  - [Simple ML.ipynb](ML_Simple.ipynb)
-    - Uses Jupyter Notebook to connect to our Heroku database to pull wildfire data and runs a random forest classifier
-    - First iteration of ML model ETL and assessing relationships
-  - [noaa_data_payground.ipynb](https://colab.research.google.com/drive/1VAWK816E8hy7tyfbFem6Q9Z6DEXCUf_o#scrollTo=0Rzd3OD_kQlU)
-     - Uses Google Colab to connect to our Heroku database and pull noaa_data and begin data cleaning. We will join the wildfire data and the NOAA data as we continue on with the project.
+ - PostgresSQL
+ - Python 3.7
+ - Google Colab
+ - VSCode 1.62.0
+ - PGAdmin 5.2
+ - Matplotlib
+ - Heroku
+ - Scikit learn
+ - ML: Random Forest Classifier
+ - ML: SMOTEEN
+ - Java Script
+ - JSON
+ - HTML
+ - Leaflet
 
 ## Machine Learning Model - ML_Simple (Provisional Model)
 
@@ -226,17 +228,8 @@ Overall accuracy decreased from ML_Fire and ML_fireandweather, with the most sig
 - Merging weather data - downloaded data by county (37 total) for the state of Oregon which resulted in over 1 million rows of data.  Initially tried to merge via PGAdmin.  Due to varying column inclusion by county, the schema would have been 40+ columns wide.  Due to the data width, the team pivoted to using pandas to merge the data which was more efficient. 
 - Determination of useful variables - Currently working on the proper threshold level to determine whether to keep certain columns based upon % of NaN.
 
-## Predict Wildfire Spread  - Results
-- Preliminary findings 11.06.2021 
-    - Feature Importance from Random Classifier 11.06.2021
-        - Longitude/Latitude/fire_year - shows the greatest weight on fire size (0.017 - 0.36)
-    - General Cause of Fire
-        - Equipment use shows the greatest weight for cause of wildfire (0.009)
-            - Considering binning "general cause" of fire into two categories: human causes and natural causes
-    - Fuel Model (A - X)
-        - "Annual Grasses" (A) show the greatest weight on fire size (0.009)
-        - "Dense Chaparral" (B) show the least weight on fire size (0.001)
-
 ## Analysis
 ## (Additional Diagrams, Resources, etc)
 ## Summary
+
+
