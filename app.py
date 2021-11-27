@@ -22,7 +22,7 @@ class JSONEncoder(json.JSONEncoder):
 # Creating home route
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template("index.html", mapbox=api_key)
 
 # "about" page - just checking it out - we may not use it
 @app.route("/about")
