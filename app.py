@@ -29,26 +29,27 @@ def about():
     return render_template('about.html')
 
 # Office hours connect 
-@app.route("/api/wildfire/<severity>/<year>")
-def wildfire(severity, year):
+@app.route("/api/wildfire/<mlModel>/<severity>/<year>")
+def wildfire(mlModel,severity, year):
     columns = "fire_year, latitude, longitude, actual_fire_severity, predicted_fire_severity, total_acres"
-    connection = engine.connect()   
+    connection = engine.connect()
+    model = mlModel
     no_severity = False
     no_year = False
     statement = ""
-    if severity == "No Severity":
+    if severity == "All Severity":
             no_severity = True
-    if year == "No Year":
+    if year == "All Years":
         no_year = True
     
     if no_severity == True and no_year == True:
-        statement = f"SELECT * FROM prediction_results_1 WHERE fire_year = 2021;"
+        statement = f"SELECT * FROM prediction_results_1"
     elif no_severity == True and no_year == False:
-        statement = f"SELECT {columns} FROM prediction_results_1 WHERE fire_year = {year};"
+        statement = f"SELECT {columns} FROM prediction_results_{model} WHERE fire_year = {year};"
     elif no_severity == False and no_year == True:
-        statement = f"SELECT {columns} FROM prediction_results_1 WHERE actual_fire_severity = {severity};"
+        statement = f"SELECT {columns} FROM prediction_results_{model} WHERE actual_fire_severity = {severity};"
     else:
-        statement = f"SELECT {columns} FROM prediction_results_1 WHERE fire_year = {year} AND actual_fire_severity = {severity};"     
+        statement = f"SELECT {columns} FROM prediction_results_{model} WHERE fire_year = {year} AND actual_fire_severity = {severity};"     
     query = connection.execute(statement)
     obj = [{column: value for column, value in rowproxy.items()} for rowproxy in query]
     connection.close()

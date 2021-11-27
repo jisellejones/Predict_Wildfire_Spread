@@ -347,9 +347,9 @@
 <!-- End Detecting Fire Severity -->
 
 
-<!-- Fire Severity Map-->
+<!-- Fire Severity Map and Prediction Graph-->
 
-<div class="container-fluid">
+<div class="container-fluid" style="padding-bottom: 300px;">
   <div class="row">
     <div class="col-md-2">
       <div class="bs-component">
@@ -357,13 +357,17 @@
           <fieldset>
             <legend>Legend</legend>
             <div class="form-group">
-              <label for="year" class="form-label mt-4">Year: 2008 - 2020</label>
-              <input type="text" class="form-control" id="year" aria-describedby="yearHelp" placeholder="2021">
+              <label for="mlModel" class="form-label mt-4">ML Model</label>
+              <select class="form-select" id="mlModel">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
             </div>
-            <!-- <div class="form-group">
-              <label for="fueltype" class="form-label mt-4">Fuel Type</label>
-              <input type="fueltype" class="form-control" id="exampleInputPassword1" placeholder="Choose Fuel Type">
-            </div> -->
+            <div class="form-group">
+              <label for="year" class="form-label mt-4">Type any Year <br>2008 to 2021<br></label>
+              <input type="text" class="form-control" id="year" aria-describedby="yearHelp" placeholder="">
+            </div>
             <div class="form-group">
               <label for="severity" class="form-label mt-4">Fire Severity</label>
               <select class="form-select" id="severity">
@@ -373,15 +377,6 @@
                 <option>3</option>
               </select>
             </div>
-            <!-- <div class="form-group">
-              <label for="exampleSelect2" class="form-label mt-4">Fire Severity</label>
-              <select multiple="" class="form-select" id="exampleSelect2">
-                <option>All</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-              </select>
-            </div> -->
             <div class="form-group">
               <button type="button" class="btn btn-primary" id="submitbutton">Submit</button>
             </div>
@@ -394,7 +389,7 @@
       </div>
     </div>
     <div class="col-md-5">  
-      <div id="graph"></div>
+      <div id="graphpredict"></div>
     </div>
   </div> 
 </div>
@@ -408,6 +403,9 @@ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0v
 crossorigin=""></script> 
  <!-- import index.js script here -->
  <script type="text/javascript" src = "../static/js/wildfiremap.js"></script>
+ <!-- import Plotly -->
+ <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 
   
 </body>
