@@ -1,15 +1,16 @@
 # Initial Import of Dependencies
 import os
 import json
-from flask import Flask , render_template, jsonify, request, redirect, url_for
+from flask import Flask , render_template, jsonify, redirect, url_for
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from config import connection_string
 from decimal import Decimal
 
 app = Flask(__name__)
 
 # Connecting to database
+connection_string = os.environ["connection_string"]
+api_key = os.environ["API_KEY"]
 engine = create_engine(connection_string)
 
 class JSONEncoder(json.JSONEncoder):
