@@ -24,6 +24,40 @@ Can the severity of a wildfire be predicted based on geographic and weather data
 ## Reason for topic selection
 - Wildfires have seemed to be increasing over time in both frequency and intensity. These wildfires impact the lives of humans and animals in surrounding cities and states. The massive loss of forest and greenery may also accelerate the impacts of climate change. If we can predict the location, size, and spread of a wildfire, we may be able to decrease the amount of natural life lost.
 
+## Dashboard / Data Story
+ [Wildfire Website Deployment](https://wildfirepredict.herokuapp.com/)
+ 
+ I. Fires in OR seem to be increasing in fluency each year
+    A. Visualization - Number of fire per year (linear regression)
+II.	Fires also seem to be increasing in intensity 
+    A. Visualization showing increasing intensity? (1990 - 2001)
+    B. Visual of map showing years and intensity? (1990 - 2001)
+III.Effects of fires on humans, animals, Earth
+ 	A. Just an explanation - words or images, not necessarily data - or a mosaic of percentages, data on how fires effect these things.  All Oregon statistics:
+        1.	Structures destroyed 300+ 
+        2.	Ddeaths 11 deaths in 2020
+        3.	Area Burned in 2020 1.2 Million Acres (GlobalForestWatch.Org)
+IV.	What causes wildfires
+	A. Human causes
+    B. Natural causes
+    C. Fuel Type
+    D. Weather
+V.	Which of these have the greatest impact on fire severity?
+    A. Visualization of Random Forest Weighted Table
+VI.	Can we predict the severity of a Wildfire based on 4 factors mentioned above?
+    A. For each ML model show a dashboard of the  following
+        1. Graph showing severity number
+        2. Visualization of map with actual acres burned
+            a. Colors = severity
+            b. Size = acreage
+            c. Popups
+        3. Table showing accuracy
+        4. Give user ability to choose fire year & severity?
+
+## Exploratory Data Analysis
+- [Database Schema with Join](db_schema.sql)
+- [Database Join Code](database_schema_code_ERD/db_join_code.png)
+
 ### Questions during EDA from data
 
 - Is there correlation between the amount of slashing (heavy, medium, thinning) and the size of a wildfire?
@@ -34,42 +68,6 @@ Can the severity of a wildfire be predicted based on geographic and weather data
 - Can we predict the fire size using a supervised model, show it on a map and then overlay wind speed/direction to possibly indicate the fire location?
     - Then could we show surrounding cities/towns for possible resources or evacuation areas?
     
-## Dashboard
-- - [Wildfire Website Deployment](https://wildfirepredict.herokuapp.com/)
-### Dashboard Outline
-    Our Data Story
-        I. Fires in OR seem to be increasing in fluency each year
-        II. Visualization (linear regression that Mike created earlier on?)
-        III. Fires also seem to be increasing in intensity 
-            Visualization showing increasing intensity? (1990 - 2001)
-        Visual of map showing years and intensity? (1990 - 2001)
-        Effects of fires on humans, animals, Earth
-        Just an explanation - words or images, not necessarily data - or a mosaic of percentages, data on how fires effect these things.  All Oregon statistics:
-        Structures destroyed 300+ 
-        Carbon release
-        Ddeaths 11 deaths in 2020
-        Area Burned in 2020 1.2 Million Acres (GlobalForestWatch.Org)
-        What causes wildfires
-        Human causes
-        Natural causes
-        Fuel Type
-        Weather
-
-Which of these have the greatest impact on fire severity?
-Visualization of Random Forest Weighted Table
-
-Can we predict the severity of a Wildfire based on 4 factors mentioned above?
-For each ML model show a dashboard of the  following
-Graph showing severity number
-
-
-Visualization of map with actual acres burned
-Colors = severity
-Size = acreage
-Popups => 
-Table showing accuracy
-Give user ability to choose fire year & severity?
-
 ## Resources
 - [Presentation](https://docs.google.com/presentation/d/1plyPo9EvBSwDRBLmRfiiLZi264RDhYacvXQldgWzTLU/edit#slide=id.p)
 - [Database Schema with Join](db_schema.sql)
