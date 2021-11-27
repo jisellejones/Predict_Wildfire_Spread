@@ -4,6 +4,7 @@ let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{
 	maxZoom: 18,
 	accessToken: mapBoxToken
 });
+console.log(mapBoxToken)
 
 // Add Map
 let map = L.map('map', {
