@@ -155,6 +155,7 @@ function getRadius(acres) {
   if (acres > 100) {
     return acres * 10;
   }
+}
   
   
 
@@ -168,6 +169,7 @@ function getColor(severity) {
   }
   return "#00FFFF";
 }
+
 
 // Updates Bar Chart
 function updateChart(model, severity, year) {  
