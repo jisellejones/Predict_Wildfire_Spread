@@ -1,8 +1,10 @@
+
+
 // Add map tile
 let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
 	maxZoom: 18,
-	accessToken: API_KEY
+	accessToken: mapBoxToken
 });
 
 // Add Map
@@ -29,8 +31,6 @@ function init() {
     let predicted_count1 = predicted.filter(x => x === 1).length 
     let predicted_count2 = predicted.filter(x => x === 2).length
     let predicted_count3 = predicted.filter(x => x === 3).length 
-
-    console.log(actual_count1, actual_count2, actual_count3, predicted_count1, predicted_count2, predicted_count3)
 
     Highcharts.chart('graphpredict', {
       chart: {
@@ -99,7 +99,6 @@ let fires = new L.LayerGroup();
 // function to update map
 function updateMap(model, severity, year) {
   d3.json(`/api/wildfire/${model}/${severity}/${year}`).then(function(data){
-      console.log(severity, year)
       // remove all the markers in one go
       fires.clearLayers();
       for (var i = 0; i < data.length; i++) {
@@ -110,7 +109,7 @@ function updateMap(model, severity, year) {
               color: getColor(data[i]['actual_fire_severity']),
               fillColor: getColor(data[i]['actual_fire_severity']),
               weight:1,
-              radius:getRadius(data[i]['total_acres']),
+              radius: Math.sqrt(data[i]['total_acres'] * 1000),
               stroke: true
           }).bindPopup('Name: ' + data[i]['fire_name'] + '<br>Year: '+ data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
       }
@@ -140,12 +139,7 @@ function filterMap() {
   }
   updateMap(model, severity, year);
   updateChart(model, severity, year);
-}
-
-// Determines the radius of the fire marker based on the number of acres burned.
-function getRadius(acres) {
-    return acres * 10;
-  }
+}  
 
 // This function determines the color of the marker based on the severity of the fire.
 function getColor(severity) {
@@ -157,6 +151,7 @@ function getColor(severity) {
   }
   return "#00FFFF";
 }
+
 
 // Updates Bar Chart
 function updateChart(model, severity, year) {  
@@ -174,8 +169,6 @@ function updateChart(model, severity, year) {
     let predicted_count1 = predicted.filter(x => x === 1).length 
     let predicted_count2 = predicted.filter(x => x === 2).length
     let predicted_count3 = predicted.filter(x => x === 3).length 
-
-    console.log(actual_count1, actual_count2, actual_count3, predicted_count1, predicted_count2, predicted_count3)
 
     Highcharts.chart('graphpredict', {
       chart: {
