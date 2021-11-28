@@ -142,22 +142,22 @@ function filterMap() {
 }
 
 // Determines the radius of the fire marker based on the number of acres burned.
-function getRadius(acres) {
-  if acres > 10000) {
-    return acres/10;
-  }
-  if (acres >1000){
-    return acres;
-  }
-  if (acres > 1000) {
-    return acres * 5;
-  }
-  if (acres > 100) {
-    return acres * 10;
-  } else {
-    return acres * 10;
-  }
-}
+// function getRadius(acres) {
+//   if (acres > 10000) {
+//     return acres/10;
+//   }
+//   if (acres >1000){
+//     return acres;
+//   }
+//   if (acres > 1000) {
+//     return acres * 5;
+//   }
+//   if (acres > 100) {
+//     return acres * 10;
+//   } else {
+//     return acres * 10;
+//   }
+// }
   
   
 
