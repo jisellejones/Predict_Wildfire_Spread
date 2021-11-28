@@ -109,7 +109,7 @@ function updateMap(model, severity, year) {
               color: getColor(data[i]['actual_fire_severity']),
               fillColor: getColor(data[i]['actual_fire_severity']),
               weight:1,
-              radius: getRadius(data[i]['total_acres']),
+              radius: Math.sqrt(data[i]['total_acres'] + 2),
               stroke: true
           }).bindPopup('Name: ' + data[i]['fire_name'] + '<br>Year: '+ data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
       }
@@ -143,6 +143,9 @@ function filterMap() {
 
 // Determines the radius of the fire marker based on the number of acres burned.
 function getRadius(acres) {
+  if acres > 10000) {
+    return acres/10;
+  }
   if (acres >1000){
     return acres;
   }
