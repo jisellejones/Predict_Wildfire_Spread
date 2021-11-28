@@ -150,7 +150,7 @@ function getRadius(acres) {
     return Math.sqrt(acres);
   }
   if (acres > 1000) {
-    return Math.sqrt(acres / 10) + 2;
+    return Math.sqrt(acres/10) + 2;
   }
   if (acres > 100) {
     return acres * 10;
