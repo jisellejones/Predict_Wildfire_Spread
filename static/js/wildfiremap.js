@@ -147,13 +147,13 @@ function filterMap() {
 // Determines the radius of the fire marker based on the number of acres burned.
 function getRadius(acres) {
   if (acres >1000){
-    return Math.sqrt(acres);
+    return acres/100;
   }
   if (acres > 1000) {
-    return Math.sqrt(acres/10) + 2;
+    return acres/10;
   }
   if (acres > 100) {
-    return Math.sqrt(acres/100) + 2;
+    return acres;
   } else {
     return acres * 10;
   }
