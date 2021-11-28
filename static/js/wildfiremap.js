@@ -109,7 +109,7 @@ function updateMap(model, severity, year) {
               color: getColor(data[i]['actual_fire_severity']),
               fillColor: getColor(data[i]['actual_fire_severity']),
               weight:1,
-              radius: getRadius(data[i]['total_acres'])
+              radius: getRadius(data[i]['total_acres']),
               stroke: true
           }).bindPopup('Name: ' + data[i]['fire_name'] + '<br>Year: '+ data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
       }
