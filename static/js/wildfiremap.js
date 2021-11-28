@@ -6,7 +6,6 @@ let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{
 	maxZoom: 18,
 	accessToken: mapBoxToken
 });
-console.log(mapBoxToken)
 
 // Add Map
 let map = L.map('map', {
@@ -32,8 +31,6 @@ function init() {
     let predicted_count1 = predicted.filter(x => x === 1).length 
     let predicted_count2 = predicted.filter(x => x === 2).length
     let predicted_count3 = predicted.filter(x => x === 3).length 
-
-    console.log(actual_count1, actual_count2, actual_count3, predicted_count1, predicted_count2, predicted_count3)
 
     Highcharts.chart('graphpredict', {
       chart: {
@@ -112,7 +109,7 @@ function updateMap(model, severity, year) {
               color: getColor(data[i]['actual_fire_severity']),
               fillColor: getColor(data[i]['actual_fire_severity']),
               weight:1,
-              radius: getRadius(data[i]['total_acres']),
+              radius: getRadius(data[i]['total_acres'])
               stroke: true
           }).bindPopup('Name: ' + data[i]['fire_name'] + '<br>Year: '+ data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
       }
@@ -147,13 +144,13 @@ function filterMap() {
 // Determines the radius of the fire marker based on the number of acres burned.
 function getRadius(acres) {
   if (acres >1000){
-    return acres/100;
+    return acres * 5;
   }
   if (acres > 1000) {
-    return acres/10;
+    return acres * 10;
   }
   if (acres > 100) {
-    return acres;
+    return acres * 10;
   } else {
     return acres * 10;
   }
