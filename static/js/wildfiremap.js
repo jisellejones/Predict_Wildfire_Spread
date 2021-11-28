@@ -102,7 +102,6 @@ let fires = new L.LayerGroup();
 // function to update map
 function updateMap(model, severity, year) {
   d3.json(`/api/wildfire/${model}/${severity}/${year}`).then(function(data){
-      console.log(severity, year)
       // remove all the markers in one go
       fires.clearLayers();
       for (var i = 0; i < data.length; i++) {
@@ -113,7 +112,7 @@ function updateMap(model, severity, year) {
               color: getColor(data[i]['actual_fire_severity']),
               fillColor: getColor(data[i]['actual_fire_severity']),
               weight:1,
-              radius:Math.sqrt((data[i]['total_acres']/100) + 2),
+              radius: getRadius(data[i]['total_acres']),
               stroke: true
           }).bindPopup('Name: ' + data[i]['fire_name'] + '<br>Year: '+ data[i]['fire_year'] + '<br>Total Acres Burned: ' + data[i]['total_acres']).addTo(fires);
       }
@@ -147,9 +146,17 @@ function filterMap() {
 
 // Determines the radius of the fire marker based on the number of acres burned.
 function getRadius(acres) {
-  radius: Math.sqrt(cases / 100) + 2
-    return Math.sqrt(acres / 100) + 2;
+  if (acres >1000){
+    return Math.sqrt(acres);
   }
+  if (acres > 1000) {
+    return Math.sqrt(acres / 10) + 2;
+  }
+  if (acres > 100) {
+    return acres * 10;
+  }
+  
+  
 
 // This function determines the color of the marker based on the severity of the fire.
 function getColor(severity) {
@@ -178,8 +185,6 @@ function updateChart(model, severity, year) {
     let predicted_count1 = predicted.filter(x => x === 1).length 
     let predicted_count2 = predicted.filter(x => x === 2).length
     let predicted_count3 = predicted.filter(x => x === 3).length 
-
-    console.log(actual_count1, actual_count2, actual_count3, predicted_count1, predicted_count2, predicted_count3)
 
     Highcharts.chart('graphpredict', {
       chart: {
