@@ -28,19 +28,17 @@ Can the severity of a wildfire be predicted based on geographic and weather data
  [Wildfire Website Deployment](https://wildfirepredict.herokuapp.com/)
  
  - Fires in OR seem to be increasing in fluency each year
-    - Visualization - Number of fire per year (linear regression)
  - Fires also seem to be increasing in intensity 
     - Visualization showing increasing intensity? (1990 - 2001)
     - Visual of map showing years and intensity? (1990 - 2001)
-- Effects of fires on humans, animals, Earth
- 	- Just an explanation - words or images, not necessarily data - or a mosaic of percentages, data on how fires effect these things.  All Oregon statistics:
+- Effects of wildfires
+ 	- Oregon 2020 statistics:
         - Structures destroyed 300+ 
         - Deaths 11 deaths in 2020
         - Area Burned in 2020 1.2 Million Acres (GlobalForestWatch.Org)
 - What causes wildfires
 	- Human causes
     - Natural causes
-    - Fuel Type
     - Weather
 - Which of these have the greatest impact on fire severity?
     - Visualization of Random Forest Weighted Table
@@ -55,18 +53,30 @@ Can the severity of a wildfire be predicted based on geographic and weather data
         - Give user ability to choose fire year & severity?
 
 ## Exploratory Data Analysis
-- [Database Schema with Join](db_schema.sql)
+Two data sources were used in analysis.  Prior to using these data sources, the following steps were taken to explore/clean the data:
+
+    - Time periods were reviewed to ensure they matched between sources.  The fire data was filtered to match the time periods of the weather data [Fire Year Filter](database_schema_code_ERD/fire_date_filter.png)
+    - The fire data general cause was reviewed and values transformed into 3 categories [Gernal Cause](database_schema_code_ERD/cause_count.png) , [Categories](database_schema_code_ERD/categories.png)
+    - Dropped null columns from data [Drop Code]((database_schema_code_ERD/drop_null.png)
+    - Dropped all columns from the weather data except for the 5 core categories as tracked by noaa.  [5 Core Values](database_schema_code_ERD/core_values.png)
+        - Other values were not include due to the high number of null values.  Inclusion would have significantly reduced the amount of useable data for the machine learning analysis
+
+
+[Database Schema with Join](db_schema.sql)
 - [Database Join Code](database_schema_code_ERD/db_join_code.png)
 
 ### Questions during EDA from data
 
 - Is there correlation between the amount of slashing (heavy, medium, thinning) and the size of a wildfire?
 - Is there correlation between the average or median precipitation of the month the fire starts and the fire size?
+    - Due to time and technical constraints this was not explored, but should be researched further
 - Is there correlation between the average or median precipitation of the year prior to the start of the fire and the fire size?
+    - Due to time and technical constraints this was not explored, but should be researched further
+    - Weather data from stations located within each county was averaged for the day the fire started
 - How much correlation or difference is there in correlation between the fuel type and the fire size?
-- Is there a way to determine the direction the fire will move from where it started?
 - Can we predict the fire size using a supervised model, show it on a map and then overlay wind speed/direction to possibly indicate the fire location?
-    - Then could we show surrounding cities/towns for possible resources or evacuation areas?
+    - This was main focus of the ML models
+
     
 ## Resources
 - [Presentation](https://docs.google.com/presentation/d/1plyPo9EvBSwDRBLmRfiiLZi264RDhYacvXQldgWzTLU/edit#slide=id.p)
