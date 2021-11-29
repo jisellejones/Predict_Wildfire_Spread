@@ -1,6 +1,6 @@
 # Predict_Wildfire_Spread
 
-## Presentation Link
+## Presentation Link (still in draft form)
 
 [Presentation](https://docs.google.com/presentation/d/1plyPo9EvBSwDRBLmRfiiLZi264RDhYacvXQldgWzTLU/edit#slide=id.p)
 
