@@ -55,6 +55,10 @@ Can the severity of a wildfire be predicted based on geographic and weather data
 ## Exploratory Data Analysis
 Two data sources were used in analysis.  Prior to using these data sources, the following steps were taken to explore/clean the data:
 
+### Exploring Fire Data
+See (Exploratory_Data_Analysis file)[https://github.com/jisellejones/Predict_Wildfire_Spread/blob/main/Exploratory_Data_Analysis.ipynb]
+### Cleaning Data
+
     - Time periods were reviewed to ensure they matched between sources.  The fire data was filtered to match the time periods of the weather data [Fire Year Filter](database_schema_code_ERD/fire_date_filter.png)
     - The fire data general cause was reviewed and values transformed into 3 categories [Gernal Cause](database_schema_code_ERD/cause_count.png) , [Categories](database_schema_code_ERD/categories.png)
     - Dropped null columns from data [Drop Code]((database_schema_code_ERD/drop_null.png)
@@ -265,15 +269,3 @@ Overall accuracy decreased from ML_Fire and ML_fireandweather, with the most sig
 ### Results (SMOTEENN):
 
 ![Uploading Screen Shot 2021-11-22 at 10.53.27 PM.png…]()
-
-
-## Challenge Summary
-- Finding usable data - reviewed data on several different platforms.  Data formats where the biggest hurrdle.  Found 2 sources that provided data in .csv
-- Merging weather data - downloaded data by county (37 total) for the state of Oregon which resulted in over 1 million rows of data.  Initially tried to merge via PGAdmin.  Due to varying column inclusion by county, the schema would have been 40+ columns wide.  Due to the data width, the team pivoted to using pandas to merge the data which was more efficient. 
-- Determination of useful variables - Currently working on the proper threshold level to determine whether to keep certain columns based upon % of NaN.
-
-## Analysis
-## (Additional Diagrams, Resources, etc)
-## Summary
-
-
