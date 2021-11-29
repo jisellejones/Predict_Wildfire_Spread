@@ -2,7 +2,7 @@
 
 ## Presentation Link (still in draft form)
 
-[Presentation](https://docs.google.com/presentation/d/1plyPo9EvBSwDRBLmRfiiLZi264RDhYacvXQldgWzTLU/edit#slide=id.p)
+[Presentation](https://docs.google.com/presentation/d/1plyPo9EvBSwDRBLmRfiiLZi264RDhYacvXQldgWzTLU/edit?usp=sharing)
 
 ## Dashboard Link
 
