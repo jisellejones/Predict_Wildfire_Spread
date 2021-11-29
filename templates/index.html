@@ -332,15 +332,21 @@
 <!-- Detecting Fire Severity -->
 
 <section class="section" id="sectionbreaks">
-  <div class="container">
+  <div class="container" style="padding-bottom: 50px; padding-top: 50px>
       <div class="row">
           <div class="col-lg-10 offset-lg-1">
               <div class="cta-content">
                   <h2><a id="fmap"></a>Detecting <em>Fire </em> Severity</h2>
                   <p>The map below can be filtered to show the location and fire severity for each fire 
-                    from the three random forest classifier test sets (models).
+                    from the three random forest classifier test sets.
+                  <br> The 3 fire severity levels were determined using the USDA Forest Service classifiction system:
+                    <ul>
+                      <li>Class 1 - one-fourth acre or less</li>
+                      <li>Class 2 - more than one-fourth acre, but less than 300 acres</li>
+                      <li>Class 3 - 300 acres or more.</li>
+                    </ul>
                   <br>Click on the fire marker in the map to see a pop-up displaying the name of the fire, the year, and the fire severity.
-                  <br>The graph shows the number of fires the model predicted versus the actual number of fires the model predicted.
+                  <br>The graph shows the number of fires the model predicted at that severity level versus the actual number of fires that occurred and their actual severity levels.
                   <br>Use the dropdown menus to choose the the machine learning model and fire severity.
                   <br>Type the 4-digit year of the data you want to see in the "Year" field.
                   <br>If any field is left blank, all the data for that field will be displayed for the chosen model.
