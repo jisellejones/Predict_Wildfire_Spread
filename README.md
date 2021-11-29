@@ -1,14 +1,16 @@
 # Predict_Wildfire_Spread
 
-# Challenge Summary
+## Presentation Link
 
-## Communication Protocols
-- Jiselle will merge all pull requests to the main branch
-- Jiselle will check the repo each day for pull requests
-- Team members will also communicate via meetings or chats when branches are ready to be merged
-- Team will meet on M/W during class and will determine other meeting times over the week at Mondays class or Saturday office hours
+[Presentation](https://docs.google.com/presentation/d/1plyPo9EvBSwDRBLmRfiiLZi264RDhYacvXQldgWzTLU/edit#slide=id.p)
 
-## Project Overview - Predict Wildfire Spread
+## Dashboard Link
+
+[Wildfire Website Deployment](https://wildfirepredict.herokuapp.com/)
+
+## Outline of Project
+
+### Project Overview - Predict Wildfire Spread
 
 The purpose of this project is to try to predict where and how quickly a wildfire will spread based on
 - fuel type
@@ -17,16 +19,16 @@ The purpose of this project is to try to predict where and how quickly a wildfir
 - accessibility
 - geography
 
-## Main Question
+### Main Question
 
 Can the severity of a wildfire be predicted based on geographic and weather data? 
 
-## Reason for topic selection
+### Reason for topic selection
+
 - Wildfires have seemed to be increasing over time in both frequency and intensity. These wildfires impact the lives of humans and animals in surrounding cities and states. The massive loss of forest and greenery may also accelerate the impacts of climate change. If we can predict the location, size, and spread of a wildfire, we may be able to decrease the amount of natural life lost.
 
-## Dashboard / Data Story
- [Wildfire Website Deployment](https://wildfirepredict.herokuapp.com/)
- 
+### Dashboard / Data Story Outline
+
  - Fires in OR seem to be increasing in fluency each year
  - Fires also seem to be increasing in intensity 
     - Visualization showing increasing intensity? (1990 - 2001)
@@ -52,12 +54,20 @@ Can the severity of a wildfire be predicted based on geographic and weather data
         - Table showing accuracy
         - Give user ability to choose fire year & severity?
 
-## Exploratory Data Analysis
+### Exploratory Data Analysis
 Two data sources were used in analysis.  Prior to using these data sources, the following steps were taken to explore/clean the data:
 
-### Exploring Fire Data
+#### Exploring Fire Data
+
 See [Exploratory_Data_Analysis file](https://github.com/jisellejones/Predict_Wildfire_Spread/blob/main/Exploratory_Data_Analysis.ipynb)
-### Cleaning Data
+
+We considered and created visualizations for:
+
+- Fire data over time
+- Counties vs number of fires & counties vs total acres
+- Statistics of total acres burned grouped by fuel type
+
+#### Cleaning Data
 
     - Time periods were reviewed to ensure they matched between sources.  The fire data was filtered to match the time periods of the weather data [Fire Year Filter](database_schema_code_ERD/fire_date_filter.png)
     - The fire data general cause was reviewed and values transformed into 3 categories [Gernal Cause](database_schema_code_ERD/cause_count.png) , [Categories](database_schema_code_ERD/categories.png)
@@ -65,27 +75,16 @@ See [Exploratory_Data_Analysis file](https://github.com/jisellejones/Predict_Wil
     - Dropped all columns from the weather data except for the 5 core categories as tracked by noaa.  [5 Core Values](database_schema_code_ERD/core_values.png)
         - Other values were not include due to the high number of null values.  Inclusion would have significantly reduced the amount of useable data for the machine learning analysis
 
+### Database & Data Sources
+
+-  Data Sources:
+    - [NOAA Documentation](https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/GHCND_documentation.pdf)
+    - [Weather Data - Noaa Search Tool](https://www.ncdc.noaa.gov/cdo-web/search?datasetid=GHCND)
+    - [Oregon Wildfire Data](https://apps.odf.oregon.gov/DIVISIONS/protection/fire_protection/fires/FIRESlist.asp)
 
 [Database Schema with Join](db_schema.sql)
 - [Database Join Code](database_schema_code_ERD/db_join_code.png)
 
-### Questions during EDA from data
-
-- Is there correlation between the amount of slashing (heavy, medium, thinning) and the size of a wildfire?
-- Is there correlation between the average or median precipitation of the month the fire starts and the fire size?
-    - Due to time and technical constraints this was not explored, but should be researched further
-- Is there correlation between the average or median precipitation of the year prior to the start of the fire and the fire size?
-    - Due to time and technical constraints this was not explored, but should be researched further
-    - Weather data from stations located within each county was averaged for the day the fire started
-- How much correlation or difference is there in correlation between the fuel type and the fire size?
-- Can we predict the fire size using a supervised model, show it on a map and then overlay wind speed/direction to possibly indicate the fire location?
-    - This was main focus of the ML models
-
-    
-## Resources
-- [Presentation](https://docs.google.com/presentation/d/1plyPo9EvBSwDRBLmRfiiLZi264RDhYacvXQldgWzTLU/edit#slide=id.p)
-- [Database Schema with Join](db_schema.sql)
-- [Wildfire Website Deployment](https://wildfirepredict.herokuapp.com/)
 -  Data Files on Heroku:
     -  wildfire_data
         - Data from the Oregon Department of Forestry with data from 1990 to 2021 
@@ -98,19 +97,12 @@ See [Exploratory_Data_Analysis file](https://github.com/jisellejones/Predict_Wil
         - Step 3: Use the following code - replace [table] is either wildfire_data or noaa_data
             - engine = pg.connect("dbname='d3r8dfuncb78iv' user='jrufhfiejfajri' host='ec2-52-200-155-213.compute-1.amazonaws.com' port='5432' password='9a7254d2151b5e3c280fe275dbba039acdc9190fbc167f64c564c449ca77af88'")
             - noaa_df = pd.read_sql('select * from [table]', con=engine)    
-    
--  Data Sources:
-    - [NOAA Documentation](https://www1.ncdc.noaa.gov/pub/data/cdo/documentation/GHCND_documentation.pdf)
-    - [Weather Data - Noaa Search Tool](https://www.ncdc.noaa.gov/cdo-web/search?datasetid=GHCND)
-    - [Oregon Wildfire Data](https://apps.odf.oregon.gov/DIVISIONS/protection/fire_protection/fires/FIRESlist.asp)
 
-## Software/Languages:
+### Software/Languages:
  - PostgresSQL
  - Python 3.7
- - Google Colab
  - VSCode 1.62.0
  - PGAdmin 5.2
- - Matplotlib
  - Heroku
  - Scikit learn
  - ML: Random Forest Classifier
@@ -119,6 +111,8 @@ See [Exploratory_Data_Analysis file](https://github.com/jisellejones/Predict_Wil
  - JSON
  - HTML
  - Leaflet
+
+# Machine Learning Models
 
 ## Machine Learning Model - ML_Simple (Provisional Model)
 
@@ -152,15 +146,12 @@ We choose to start with Random Forest Classifier for two reasons:
 
 <img width="483" alt="Screen Shot 2021-11-22 at 10 36 29 PM" src="https://user-images.githubusercontent.com/691355/142980342-82f02fac-5eb5-4173-a2f8-c4a30a2443b3.png">
 
-
-
 ### Limitations:
 RFC does great with classification but not regression.  The model would have a difficult time with precise and continous predictions.  There is also a high chance the trees have there own condtions, such as:
 -  Class Imbalance
 -  Sample Duplicatiom
 -  Overfitting
 -  Node Splitting 
-
 
 ## Machine Learning Model - ML_Fire
 
@@ -169,7 +160,6 @@ To match our future weather features merge, the years for the fire data were adj
 
 ### Feature Engineering Changes(Target):  
 For our target, we determined there was value in following a recognized fire classification system.  The levels were changed to match how the National Wildfire Coordinating Group classifies fires. https://www.nwcg.gov/term/glossary/size-class-of-fire.  After running the model with the changed class sizes, we saw a decrease in accuracy across the model.  Therefore, the class sizes were adjusted to follow a 3 class system from USDA Forest Service: https://www.fs.fed.us/nwacfire/home/terminology.html.
-
 
 ### Fire Classes - National Wildfire Coordinating Group vs USDA Forest Service 
 
@@ -269,3 +259,7 @@ Overall accuracy decreased from ML_Fire and ML_fireandweather, with the most sig
 ### Results (SMOTEENN):
 
 ![Uploading Screen Shot 2021-11-22 at 10.53.27 PM.png…]()
+
+# Summary
+
+Overall this was a really intriguing project. We learned a lot about wildfire data and the many variables involved in determining where and how far a wildfire might spread. While our models didn't reach a level to be able to truly predict the spread of a wildfire, we were able to build a foundational model from which other people might develop further.
