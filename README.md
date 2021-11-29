@@ -10,7 +10,7 @@
 
 ## Outline of Project
 
-### Project Overview - Predict Wildfire Spread
+### Overview
 
 The purpose of this project is to try to predict where and how quickly a wildfire will spread based on
 - fuel type
