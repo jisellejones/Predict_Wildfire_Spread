@@ -56,7 +56,7 @@ Can the severity of a wildfire be predicted based on geographic and weather data
 Two data sources were used in analysis.  Prior to using these data sources, the following steps were taken to explore/clean the data:
 
 ### Exploring Fire Data
-See (Exploratory_Data_Analysis file)[https://github.com/jisellejones/Predict_Wildfire_Spread/blob/main/Exploratory_Data_Analysis.ipynb]
+See [Exploratory_Data_Analysis file](https://github.com/jisellejones/Predict_Wildfire_Spread/blob/main/Exploratory_Data_Analysis.ipynb)
 ### Cleaning Data
 
     - Time periods were reviewed to ensure they matched between sources.  The fire data was filtered to match the time periods of the weather data [Fire Year Filter](database_schema_code_ERD/fire_date_filter.png)
