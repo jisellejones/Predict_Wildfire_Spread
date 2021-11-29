@@ -8,6 +8,8 @@
 
 [Wildfire Website Deployment](https://wildfirepredict.herokuapp.com/)
 
+website deploys from "flask_app_dev" branch of this repo
+
 ## Outline of Project
 
 ### Overview
