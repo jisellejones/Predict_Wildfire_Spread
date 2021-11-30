@@ -193,7 +193,7 @@
             </div>
             <div class="down-content">
               <h4>Are there any counties where fires seem to be more prevalent?</h4>
-                <p>There have been 5,000 or more fires in Harney County, Lake County, Marion County</p>
+                <p >left There have been 5,000 or more fires in Harney County, Lake County, Marion County</p>
             </div>
           </div>
         </div>
@@ -382,18 +382,22 @@
           <div class="col-lg-10 offset-lg-1">
               <div class="cta-content">
                   <h2><a id="fmap"></a>Detecting <em>Fire </em> Severity</h2>
-                  <p style="text-align: left;">The map below can be filtered to show actual fire location and severity level from the rand forest classifier test sets.
+                  <p style="text-align: left">The map below can be filtered to show the actual fire location and 
+                    severity level from the random forest classifier test sets.
                   <br> The 3 fire severity levels were determined using the USDA Forest Service classifiction system:
+                  </p>
                   <ul>
-                    <li>Class 1 - one-fourth acre or less</li>
-                    <li>Class 2 - more than one-fourth acre, but less than 300 acres</li>
-                    <li>Class 3 - 300 acres or more.</li> 
+                    <li>Class 1 - one-fourth acre or less (blue).</li>
+                    <li>Class 2 - more than one-fourth acre, but less than 300 acres (yellow)</li>
+                    <li>Class 3 - 300 acres or more (orange).</li> 
                   </ul>
-                  <br>Click on the fire marker in the map to see a pop-up displaying the name of the fire, the year, and the fire severity level.
-                  <br>The graph shows the number of fires the model predicted at the selected severity level versus the same fire's actual severity levels.
+                  <p style="text-align: left"> The graph shows the actual number of fires at the chosen severity 
+                    level versus the predicted severity levels for those same fires.
                   <br>Use the dropdown menus to choose the the machine learning model and fire severity.
                   <br>Type the 4-digit year of the data you want to see in the "Year" field.
                   <br>If any field is left blank, all the data for that field will be displayed for the chosen model.
+                  <br>Click the fire marker in the map to see a pop-up displaying the name of the fire, the year 
+                  the fire occurred, and the actual fire severity level.
                   </p>
               </div>
           </div>
