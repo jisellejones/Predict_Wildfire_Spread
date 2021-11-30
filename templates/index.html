@@ -162,7 +162,6 @@
 <!-- End Fire Acres Counter -->
 
 
-
 <!-- Fire Stats -->
  <section class="section" id="sectionbreaks">
   <div class="container">
@@ -184,7 +183,7 @@
         <div class="ml-item">
           <h2 style="color: black;"><a id="machinel"></a></h2>
             <div class="image-thumb">
-                <img src="" alt="line graph">
+                <img src="../static/images/year_line_plot.png" alt="line graph">
             </div>
             <div class="down-content">
                 <h4>Are Fires on the Rise?</h4>
@@ -195,7 +194,7 @@
     <div class="col-lg-4">
       <div class="ml-item">
           <div class="image-thumb">
-            <img src="" alt="bar graph">
+            <img src="../static/images/county_by_avg.png" alt="bar graph">
           </div>
           <div class="down-content">
             <h4>Are there any counties where fires seem to be more prevalent?</h4>
@@ -205,17 +204,27 @@
     <div class="col-lg-4">
       <div class="ml-item">
           <div class="image-thumb">
-            <img src="" alt="box plot">
+            <img src="../static/images/fuel_type_box_plot.png" alt="box plot">
           </div>       
         <div class="down-content">
-          <h4>Are there any counties where fires seem to be more prevalent?</h4>
-          <div class="image-thumb">
-            <img src="" alt="bar graph">
-            <p>There have been 5,000 or more fires in Harney County, Lake County, Marion County</p>
+          <h4>Are there any fuel types that are correlated with large fires (100,000 acres or more)?</h4>
+            <p>Fuel models C, G, and H are the only fuel models that come up when looking at fires of
+              100,000 acres or more.
+            </p>
+            <ul class="list-group">
+
+              <li class="list-group-item active">Fuel Model C: Open pine, grass under</li>
+              <li class="list-group-item">Fuel Model G: Conifer, Old growth</li>
+              <li class="list-group-item">Fuel Model H: Conifer, Second growth</li>
+            <p>Do any of these 3 fuel types show a higher weight if we were to run a random forest classifier?</p>
+    
+            </ul>
           </div>  
         </div>
     </div>
-    </div>
+    <p>While fire numbers seem to be decreasing, the severity of fires seem to be increasing over time. 
+      See graph below.</p>
+  </div>
 </section>
 
 <!-- End Fire Stats -->
