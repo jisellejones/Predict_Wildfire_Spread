@@ -162,19 +162,68 @@
 <!-- End Fire Acres Counter -->
 
 
-
 <!-- Fire Stats -->
- <section class="section" id="sectionbreaks">
+<section class="section" id="sectionbreaks" style="padding-bottom: 0px; padding-top: 50px">
   <div class="container">
       <div class="row">
           <div class="col-lg-10 offset-lg-1">
               <div class="cta-content">
                   <h2><a id="fireinfo"></a>What <em>Are </em> Fires <em> Doing?</em></h2>
-                  <p>(Description of burned structures / deaths etc)Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula, sit amet dapibus odio augue eget libero. 
-                    Morbi tempus mauris a nisi luctus imperdiet.</p>
+              </div>
+              <div class="section-heading1">
+                    <h2 class="aboutfire"><a id="EDA"></a>Exploratory Data Analysis</h2>
+                  <h3>When exploring the Oregon wildfire data, we asked a few key questions.</h3>
               </div>
           </div>
       </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="ml-item">
+            <div class="image-thumb">
+                <img src="../static/images/year_line_plot.png" width="300" height="300" alt="line graph">
+            </div>
+            <div class="down-content">
+                <h4>Are Fires on the Rise?</h4>
+                  <p style="text-align: left">The number of fires each year, seem to be decreasing.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="ml-item">
+            <div class="image-thumb">
+              <img src="../static/images/county_by_avg.png" width="300" height="300" alt="bar graph">
+            </div>
+            <div class="down-content">
+              <h4>Are there any counties where fires seem to be more prevalent?</h4>
+                <p style="text-align: left">There have been 5,000 or more fires in Harney County, Lake County, and Marion County.
+                <br>What is the fuel type in those areas?
+                </p>
+            </div>
+          </div>
+        </div>
+      <div class="col-lg-4">
+        <div class="ml-item">
+            <div class="image-thumb">
+              <img src="../static/images/fuel_type_box_plot.png" width="300" height="300" alt="box plot">
+            </div>       
+            <div class="down-content">
+              <h4>Are there any fuel types that are correlated with large fires (100,000 acres or more)?</h4>
+                <p style="text-align: left">Fuel models C, G, and H are the only fuel models that come up when looking at fires of
+                  100,000 acres or more.
+                </p>
+                <ul class="list-group">
+                  <li class="list-group-item active">Fuel Models</li>
+                  <li class="list-group-item">Fuel Model C: Open pine, grass under</li>
+                  <li class="list-group-item">Fuel Model G: Conifer, Old growth</li>
+                  <li class="list-group-item">Fuel Model H: Conifer, Second growth</li>
+                </ul>
+                <p style="text-align: left">Do any of these 3 fuel types show a higher weight if we were to run a random forest classifier?</p>
+            </div>  
+          </div>
+      </div>
+      <h4>While fire numbers seem to be decreasing, the severity of fires seem to be increasing over time.</h4>
+      <p></p>
+    </div>
   </div>
 </section>
 
@@ -224,7 +273,7 @@
                       <img src="https://mikefreel.com/wp-content/uploads/2021/11/ml-fire.jpg" alt="ml_fire">
                   </div>
                   <div class="down-content">
-                      <span>Random Forest Classifier</span>
+                      <span>Random Forest Classifier ML 1</span>
                       <h4>Fire Data: 2008 - 2020</h4>
                       <p>The first iteration of machine learning, with only fire data from 2008 - 2020.  The data for the project was sourced from <a href="https://apps.odf.oregon.gov/DIVISIONS/protection/fire_protection/fires/FIRESlist.asp">Oregon Department of Forestry.</a>
                         The data was compiled into a spreadsheet and through the process of ETL, made ready for the machine learning model.
@@ -248,7 +297,7 @@
                       <img src="https://mikefreel.com/wp-content/uploads/2021/11/ml-fireweather.jpg" alt="ml_fireandweather">
                   </div>
                   <div class="down-content">
-                      <span>Random Forest Classifier</span>
+                      <span>Random Forest Classifier ML 2</span>
                       <h4>Fire and Weather Data: 2008 - 2020</h4>
                       <p>
                       The second iteration of our Machine Learning model.  Data was sourced through the <a href="https://www.fs.fed.us/nwacfire/home/terminology.html.">NOAA Weather Tool</a>.  Our features were updated to include; Average Temperature (Min/Max), Snow Depth, Snow Average and Average Preciptiation.  With the additional features our model showed a decrease in overall macro averages and a greater spread of feature importance.
@@ -272,7 +321,7 @@
                       <img src="https://mikefreel.com/wp-content/uploads/2021/11/ml-fireaggweather.jpg" alt="fire_weatheraggtemp">
                   </div>
                   <div class="down-content">
-                      <span>Random Forest Classifier</span>
+                      <span>Random Forest Classifier ML 3</span>
                       <h4>Fire and Weather Data w/agg Temp: 2008 - 2020</h4>
                       <p>The third iteration of our Machine Learning model aggregated the average temperature for the month.  With 
                         this additional feature and the Weather data, ther was a slight decrease across our macro averages.  To aggregate 
@@ -331,19 +380,31 @@
 
 <!-- Detecting Fire Severity -->
 
-<section class="section" id="sectionbreaks">
+<section class="section" id="sectionbreaks" style="padding-bottom: 0px; padding-top: 50px">
   <div class="container">
       <div class="row">
           <div class="col-lg-10 offset-lg-1">
               <div class="cta-content">
                   <h2><a id="fmap"></a>Detecting <em>Fire </em> Severity</h2>
-                  <p>The map below can be filtered to show the location and fire severity for each fire 
-                    from the three random forest classifier test sets (models).
-                  <br>Click on the fire marker in the map to see a pop-up displaying the name of the fire, the year, and the fire severity.
-                  <br>The graph shows the number of fires the model predicted versus the actual number of fires the model predicted.
+                  <p style="text-align: left">The map below can be filtered to show the actual fire location and 
+                    severity level from the random forest classifier test sets.
+                  <br> The 3 fire severity levels were determined using the USDA Forest Service classifiction system.
+                  </p>
+                  
+                  <ul class="list-group">
+                    <li class="list-group-item active">Fire Severity Levels</li>
+                    <li class="list-group-item">Class 1: one-fourth acre or less (blue)</li>
+                    <li class="list-group-item">Class 2: more than one-fourth acre, but less than 300 acres (yellow)</li>
+                    <li class="list-group-item">Class 3: 300 acres or more (orange).</li>
+                  </ul>
+                
+                  <p style="text-align: left"> The graph shows the actual number of fires at the chosen severity 
+                    level versus the predicted severity levels for those same fires.
                   <br>Use the dropdown menus to choose the the machine learning model and fire severity.
                   <br>Type the 4-digit year of the data you want to see in the "Year" field.
                   <br>If any field is left blank, all the data for that field will be displayed for the chosen model.
+                  <br>Click the fire marker in the map to see a pop-up displaying the name of the fire, the year 
+                  the fire occurred, and the actual fire severity level.
                   </p>
               </div>
           </div>
