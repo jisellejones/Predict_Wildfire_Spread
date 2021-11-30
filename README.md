@@ -189,7 +189,7 @@ With the class sizes, there is still a large skew in the Class 1 fires.
 
 -  Class 1 - one-fourth acre or less;
 -  Class 2 - more than one-fourth acre, but less than 300 acres;
--  Class 7 - 300 acres or more.
+-  Class 3 - 300 acres or more.
 
 There is still a large skew in class 1 but slight balance added to class 2 and class 3.
 
