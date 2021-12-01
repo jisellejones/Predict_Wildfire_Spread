@@ -25,7 +25,7 @@ Highcharts.chart('container2', {
     xAxis: {
         categories: [
             
-            'Fire Data', 'Fire and Weather Data', 'Fire and Weather w/Agg Temp'
+            'Fire Data - ML1', 'Fire and Weather Data - ML2', 'Fire and Weather w/Agg Temp - ML3'
 
         ],
         labels: {
@@ -94,23 +94,23 @@ Highcharts.chart('container2', {
         data: [null, 2.3, 2.2]
 
     }, {
-        name: 'Fuel Model: X',
+        name: 'Fuel Model: Non wildland fuel',
         data: [1.5, 1.5, 1.4]
 
     }, {
-        name: 'Fuel Model: A',
+        name: 'Fuel Model: Annual Grasses',
         data: [0.8, 1.4, 1.4]
 
     }, {
-        name: 'Fuel Model: C',
+        name: 'Fuel Model: Open Pine',
         data: [.8, 1.3, 1.2]
 
     }, {
-        name: 'Fuel Model: H',
+        name: 'Fuel Model: Conifer, 2nd Growth',
         data: [0.7, 1.3, 1.3]
 
     }, {
-        name: 'Fuel Model: L',
+        name: 'Fuel Model: Grass Perennial',
         data: [.7, 1.2, 1.2]
 
     }, {
@@ -118,7 +118,7 @@ Highcharts.chart('container2', {
         data: [.7, 1.2, 1.2]
 
     }, {
-        name: 'Fuel Model: F',
+        name: 'Fuel Model: Dense Brush',
         data: [.6, 0.9, 0.9]
 
     }, {
@@ -129,34 +129,34 @@ Highcharts.chart('container2', {
         name: 'General Cause: Misc',
         data: [0.5, 0.8, 0.8]
     }, {
-        name: 'Fuel Model: J',
+        name: 'Fuel Model: Slash, Medium',
         data: [.6, 0.8, 0.8]
     }, {
-        name: 'Fuel Model: G',
+        name: 'Fuel Model: Conifer, Old Growth',
         data: [0.5, 0.6, 0.6]
 
     }, {
-        name: 'Fuel Model: R',
+        name: 'Fuel Model: Hardwood',
         data: [0.4, 0.5, 0.6]
 
     }, {
-        name: 'Fuel Model: I',
+        name: 'Fuel Model: Slash, Heavy',
         data: [0.5, 0.5, 0.6]
 
     }, {
-        name: 'Fuel Model: K',
+        name: 'Fuel Model: Slash, Thinning',
         data: [0.4, 0.5, 0.4]
 
     }, {
-        name: 'Fuel Model: T',
+        name: 'Fuel Model: Sagebrush',
         data: [0.3, 0.4, 0.5]
 
     }, {
-        name: 'Fuel Model: U',
+        name: 'Fuel Model: Closed Canopy Pine',
         data: [0.3, 0.4, 0.4]
 
     }, {
-        name: 'Fuel Model: B',
+        name: 'Fuel Model: Dense Chaparral',
         data: [0.2, 0.2, 0.3]
 
     }, {
