@@ -43,7 +43,7 @@ def wildfire(mlModel,severity, year):
         no_year = True
     
     if no_severity == True and no_year == True:
-        statement = f"SELECT * FROM prediction_results_1"
+        statement = f"SELECT * FROM prediction_results_{model}"
     elif no_severity == True and no_year == False:
         statement = f"SELECT * FROM prediction_results_{model} WHERE fire_year = {year};"
     elif no_severity == False and no_year == True:
