@@ -120,6 +120,21 @@ GROUP BY fire_year, district, unit, fire_number, fire_name, legal, latitude, lon
 ORDER BY report_date, county
 
 
+CREATE FUNCTION average_from_lastyear(START_DATE timestamp) 
+	RETURNS FLOAT 
+	LANGUAGE plpgsql
+AS '
+DECLARE
+	average_value FLOAT;
+BEGIN
+		SELECT avg(n.prcp_avg_day) 
+		INTO average_value
+		FROM noaa_daily n
+		WHERE n.date BETWEEN START_DATE - INTERVAL ''1 YEAR''AND START_DATE;
+		RETURN average_value;
+END;
+';
+
 --Used to create materialized view NAMED "fire_data_with_avg_weather" which contains the avg weather conditions for the month the fire took place
 --Created by naming new materialized view as called out above, then inputting the below code in the definition section
  WITH month_avg AS (
@@ -131,6 +146,6 @@ ORDER BY report_date, county
         )
  SELECT 
     fw_comb.*,
-    month_avg.avg_prcp
+    month_avg.avg_prcp, (SELECT "average_from_lastyear"(fw_comb.report_date) ) as prcp_avg_year
    FROM fw_combined_avgs fw_comb
      LEFT JOIN month_avg ON fw_comb.county::text = month_avg.county AND date_trunc('month'::text, fw_comb.report_date::timestamp with time zone) = month_avg.year_month;
