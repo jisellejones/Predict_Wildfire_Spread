@@ -8,3 +8,7 @@ MarkupSafe==2.0.1
 psycopg2-binary==2.9.2
 SQLAlchemy==1.4.27
 Werkzeug==2.0.2
+xgboost==1.5.2
+numpy==1.22.1 
+scipy==1.7.3
+geopy==2.2.0
